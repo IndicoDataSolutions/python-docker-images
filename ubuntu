@@ -1,0 +1,16 @@
+FROM ubuntu:16.04
+
+RUN apt-get update && \
+    apt-get install --no-install-recommends -y build-essential software-properties-common && \
+    add-apt-repository ppa:jonathonf/python-3.6 && \
+    apt-get update && \
+    apt-get install -y --no-install-recommends python3.6 python3.6-dev git curl wget vim && \
+    wget https://bootstrap.pypa.io/get-pip.py && \
+    python3.6 get-pip.py && \
+    rm get-pip.py && \
+    ln -sf /usr/bin/python3.6 /usr/bin/python3 && \
+    ln -sf /usr/bin/python3.6 /usr/bin/python && \
+    ln -sf /usr/local/bin/pip /usr/bin/pip3 && \
+    pip3 install --upgrade pip setuptools wheel
+
+COPY ./bin /usr/bin

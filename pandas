@@ -4,19 +4,12 @@ RUN apk update && \
     apk add --no-cache build-base && \
     apk add --no-cache python3-dev && \
     apk add --no-cache python3 && \
-    apk add --no-cache git && \
-    apk add --no-cache bash && \
-    apk add --no-cache curl && \
     python3 -m ensurepip && \
     rm -r /usr/lib/python*/ensurepip && \
     pip3 install --upgrade pip setuptools wheel && \
     if [ ! -e /usr/bin/pip ]; then ln -s pip3 /usr/bin/pip ; fi && \
     if [[ ! -e /usr/bin/python ]]; then ln -sf /usr/bin/python3 /usr/bin/python; fi && \
     pip3 install cython && \
-    apk add --no-cache zlib-dev libjpeg jpeg-dev libpng-dev freetype-dev openblas openblas-dev && \
     pip3 install numpy && \
-    pip3 install scipy && \
-    pip3 install scikit-learn imbalanced-learn pandas
-
-RUN pip3 install scikit-image
+    pip3 install pandas
 

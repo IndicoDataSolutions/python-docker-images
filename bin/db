@@ -1,0 +1,2 @@
+#!/bin/bash
+PGPASSWORD=${POSTGRES_PASSWORD:-development} psql -U ${POSTGRES_USER:-indico} -h ${POSTGRES_HOST:-$APP_NAME"-db"} ${POSTGRES_DB:-indico}

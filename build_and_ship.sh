@@ -3,5 +3,5 @@ IMAGE_NAME=$1
 
 set -e
 
-docker build -t indico/$IMAGE_NAME -f Dockerfile_$IMAGE_NAME .
+docker build --no-cache -t indico/$IMAGE_NAME -f $IMAGE_NAME ${@:2} .
 docker push indico/$IMAGE_NAME
