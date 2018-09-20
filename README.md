@@ -4,7 +4,7 @@ Because some python libraries require compilation with Cython and other build de
 We do this by using a multistage build in which the initial images are ones we have compiled libraries with all the compilation dependencies and copy the wheel cache into our current docker image. With docker image cache locally and on codeship, this speeds up the build significantly and reduces the size of docker images.
 
 
-## To build:
+## To Build:
 ```bash
 ./build_and_ship.sh [Name of dependency]
 ```
