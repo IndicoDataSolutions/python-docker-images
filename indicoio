@@ -12,7 +12,8 @@ RUN apk update && \
     pip3 install --upgrade pip setuptools wheel && \
     if [ ! -e /usr/bin/pip ]; then ln -s pip3 /usr/bin/pip ; fi && \
     if [[ ! -e /usr/bin/python ]]; then ln -sf /usr/bin/python3 /usr/bin/python; fi && \
-    pip3 install cython
+    mkdir -p /root/.cache/pip && \
+    pip3 install --cache-dir /root/.cache/pip cython
 
 RUN apk add --no-cache libjpeg jpeg-dev zlib-dev
-RUN pip3 install git+https://github.com/IndicoDataSolutions/IndicoIo-python.git
+RUN pip3 install --cache-dir /root/.cache/pip git+https://github.com/IndicoDataSolutions/IndicoIo-python.git
