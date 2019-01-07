@@ -8,6 +8,11 @@ numpy:
         dockerfile: Dockerfile/numpy
     encrypted_dockercfg_path: dockercfg.encrypted
 
+indicoio:
+    build:
+        dockerfile: Dockerfile/indicoio
+    encrypted_dockercfg_path: dockercfg.encrypted
+
 pandas:
     build:
         dockerfile: Dockerfile/pandas
