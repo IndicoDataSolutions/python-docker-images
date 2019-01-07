@@ -1,0 +1,6 @@
+FROM indico/alpine
+
+RUN apk update && \
+    apk add --no-cache openblas openblas-dev && \
+    pip3 install cython numpy && \
+    pip3 install git+https://github.com/IndicoDataSolutions/tsne.git
