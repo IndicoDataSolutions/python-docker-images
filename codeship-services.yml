@@ -1,0 +1,41 @@
+alpine:
+    image: indico/alpine
+    build:
+        dockerfile: alpine
+    encrypted_dockercfg_path: dockercfg.encrypted
+
+indicoio:
+    image: indico/indicoio
+    build:
+        dockerfile: indicoio
+    encrypted_dockercfg_path: dockercfg.encrypted
+
+numpy:
+    image: indico/numpy
+    build:
+        dockerfile: numpy
+    encrypted_dockercfg_path: dockercfg.encrypted
+
+pandas:
+    image: indico/pandas
+    build:
+        dockerfile: pandas
+    encrypted_dockercfg_path: dockercfg.encrypted
+
+sklearn:
+    image: indico/sklearn
+    build:
+        dockerfile: sklearn
+    encrypted_dockercfg_path: dockercfg.encrypted
+
+tsne:
+    image: indico/tsne
+    build:
+        dockerfile: tsne
+    encrypted_dockercfg_path: dockercfg.encrypted
+
+ubuntu:
+    image: indico/ubuntu
+    build:
+        dockerfile: ubuntu
+    encrypted_dockercfg_path: dockercfg.encrypted
