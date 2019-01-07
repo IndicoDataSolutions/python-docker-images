@@ -6,7 +6,7 @@ We do this by using a multistage build in which the initial images are ones we h
 
 ## To Build:
 ```bash
-./build_and_ship.sh [Name of dependency]
+docker build -t indico/<name> -f Dockerfile/<name> .
 ```
 
 ## To Use:
