@@ -1,21 +1,13 @@
-FROM alpine
+FROM indico/numpy as numpy-base
+FROM indico/pandas as pandas-base
 
-RUN apk update && \
-    apk add --no-cache build-base && \
-    apk add --no-cache python3-dev && \
-    apk add --no-cache python3 && \
-    apk add --no-cache git && \
-    apk add --no-cache bash && \
-    apk add --no-cache curl && \
-    python3 -m ensurepip && \
-    rm -r /usr/lib/python*/ensurepip && \
-    pip3 install --upgrade pip setuptools wheel && \
-    if [ ! -e /usr/bin/pip ]; then ln -s pip3 /usr/bin/pip ; fi && \
-    if [[ ! -e /usr/bin/python ]]; then ln -sf /usr/bin/python3 /usr/bin/python; fi && \
-    pip3 install cython && \
-    apk add --no-cache zlib-dev libjpeg jpeg-dev libpng-dev freetype-dev openblas openblas-dev && \
-    mkdir -p /root/.cache/pip && \
-    pip3 install --cache-dir /root/.cache/pip numpy && \
-    pip3 install --cache-dir /root/.cache/pip scipy==1.1.0 && \
-    pip3 install --cache-dir /root/.cache/pip scikit-learn==0.19.2 imbalanced-learn==0.3.3 pandas==0.23.4 && \
-    pip3 install --cache-dir /root/.cache/pip scikit-image==0.14.0
+FROM indico/alpine
+
+COPY --from=numpy-base /root/.cache/pip/wheels /root/.cache/pip/wheels
+COPY --from=pandas-base /root/.cache/pip/wheels /root/.cache/pip/wheels
+
+RUN apk add --no-cache zlib-dev libjpeg jpeg-dev libpng-dev freetype-dev openblas openblas-dev && \
+    pip3 install numpy==1.15.4 && \
+    pip3 install scipy==1.1.0 && \
+    pip3 install scikit-learn==0.19.2 imbalanced-learn==0.3.3 pandas==0.23.4 && \
+    pip3 install scikit-image==0.14.0
