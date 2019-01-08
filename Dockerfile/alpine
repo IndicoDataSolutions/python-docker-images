@@ -10,3 +10,4 @@ RUN mkdir -p /root/.cache/pip/wheels && \
 
 WORKDIR /root/.cache/pip/wheels
 COPY ./bin /usr/bin
+COPY ./pip.conf /root/.config/pip/pip.conf

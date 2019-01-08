@@ -1,0 +1,8 @@
+FROM indico/tsne as tsne-base
+FROM indico/alpine
+
+COPY --from=tsne-base /root/.cache/pip/wheels/ /root/.cache/pip/wheels
+
+RUN pip3 install numpy && \
+    pip3 install git+https://github.com/IndicoDataSolutions/tsne.git && \
+    rm -r /root/.cache # After installing python packages to reduce image size.

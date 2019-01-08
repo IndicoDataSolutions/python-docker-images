@@ -1,6 +1,11 @@
+FROM indico/numpy as numpy-base
+FROM indico/scipy as scipy-base
 FROM indico/alpine
+
+COPY --from=numpy-base /root/.cache/pip/wheels/ /root/.cache/pip/wheels
+COPY --from=scipy-base /root/.cache/pip/wheels/ /root/.cache/pip/wheels
 
 RUN apk update && \
     apk add --no-cache openblas openblas-dev && \
-    pip3 install cython numpy && \
-    pip3 install git+https://github.com/IndicoDataSolutions/tsne.git
+    pip3 install cython numpy scipy==1.1.0 && \
+    pip3 wheel scipy==1.1.0 git+https://github.com/IndicoDataSolutions/tsne.git

@@ -2,7 +2,7 @@ FROM indico/numpy as numpy-base
 
 FROM indico/alpine
 
-COPY --from=numpy-base /root/.cache/pip/wheels /root/.cache/pip/wheels
+COPY --from=numpy-base /root/.cache/pip/wheels/ /root/.cache/pip/wheels
 
 RUN pip3 install cython && \
     pip3 install numpy==1.15.4 && \
