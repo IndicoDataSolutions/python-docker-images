@@ -1,0 +1,10 @@
+#! /bin/bash
+
+set -e
+cd /$1
+git fetch origin
+git checkout $2
+pip3 install --find-links=/root/.cache/pip/wheels -r requirements.txt
+mv .git/refs/heads .git_heads
+rm -rf .git
+cd /
