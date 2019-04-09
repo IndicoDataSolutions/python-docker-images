@@ -1,0 +1,43 @@
+#! /bin/bash
+function postgresql {
+  pg_isready -h ${POSTGRES_HOST:-$APP_NAME"-db"} -U "${POSTGRES_USER:-indico}" -p ${POSTGRES_PORT:-5432}
+}
+
+function rabbitmq {
+  python3 -c "from atmosphere.celery_app import rabbitmq_connection_test; rabbitmq_connection_test()"
+}
+
+function cyclone {
+  curl -f ${CYCLONE_HOST:-"http://cyclone:5000"}/api/ping
+}
+function moonbow {
+  curl -f ${MOONBOW_HOST:-"http://moonbow:5000"}/api/ping
+}
+function elmosfire {
+  curl -f ${ELMOSFIRE_HOST:-"http://elmosfire:5000"}/api/ping
+}
+function noct {
+  curl -f ${NOCT_HOST:-"http://noct:5000"}/api/ping
+}
+function crowdlabel {
+  curl -f ${CROWDLABEL_HOST:-"http://crowdlabel:5000"}/api/ping
+}
+
+function run_all {
+  for var in "$@"
+  do
+    echo "Waiting for $var"
+    ($var) || exit 1
+  done
+}
+
+until (run_all $@)
+do
+  ((count++))
+  if [ ${count} -gt 500 ]
+  then
+    echo "Services not ready yet"
+    exit 1
+  fi
+  sleep 0.5
+done
