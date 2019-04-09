@@ -1,5 +1,5 @@
-FROM indico/tsne as numpy-base
-FROM indico/alpine
+FROM indicoio/tsne as numpy-base
+FROM indicoio/alpine
 
 COPY --from=numpy-base /root/.cache/pip/wheels/ /root/.cache/pip/wheels
 

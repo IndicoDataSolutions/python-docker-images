@@ -1,34 +1,39 @@
 alpine:
-    build:
-        dockerfile: Dockerfile/indicoio
-    encrypted_dockercfg_path: dockercfg.encrypted
+  build:
+    dockerfile: Dockerfile/alpine
+  encrypted_dockercfg_path: dockercfg.encrypted
 
 numpy:
-    build:
-        dockerfile: Dockerfile/numpy
-    encrypted_dockercfg_path: dockercfg.encrypted
+  build:
+    dockerfile: Dockerfile/numpy
+  encrypted_dockercfg_path: dockercfg.encrypted
 
 indicoio:
-    build:
-        dockerfile: Dockerfile/indicoio
-    encrypted_dockercfg_path: dockercfg.encrypted
+  build:
+    dockerfile: Dockerfile/indicoio
+  encrypted_dockercfg_path: dockercfg.encrypted
 
 pandas:
-    build:
-        dockerfile: Dockerfile/pandas
-    encrypted_dockercfg_path: dockercfg.encrypted
+  build:
+    dockerfile: Dockerfile/pandas
+  encrypted_dockercfg_path: dockercfg.encrypted
 
 sklearn:
-    build:
-        dockerfile: Dockerfile/sklearn
-    encrypted_dockercfg_path: dockercfg.encrypted
+  build:
+    dockerfile: Dockerfile/sklearn
+  encrypted_dockercfg_path: dockercfg.encrypted
 
 tsne:
-    build:
-        dockerfile: Dockerfile/tsne
-    encrypted_dockercfg_path: dockercfg.encrypted
+  build:
+    dockerfile: Dockerfile/tsne
+  encrypted_dockercfg_path: dockercfg.encrypted
 
 ubuntu:
-    build:
-        dockerfile: Dockerfile/ubuntu
-    encrypted_dockercfg_path: dockercfg.encrypted
+  build:
+    dockerfile: Dockerfile/ubuntu
+  encrypted_dockercfg_path: dockercfg.encrypted
+
+atmosphere:
+  build:
+    dockerfile: Dockerfile/atmosphere
+  encrypted_dockercfg_path: dockercfg.encrypted

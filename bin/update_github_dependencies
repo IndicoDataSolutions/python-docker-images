@@ -1,10 +1,13 @@
 #! /bin/bash
 
 set -e
-cd /$1
+cd /
+git clone "https://${GITHUB_ACCESS_TOKEN}@github.com/IndicoDataSolutions/${1}.git@${2}"
+cd /${1}
 git fetch origin
-git checkout $2
+git checkout ${2}
 pip3 install --find-links=/root/.cache/pip/wheels -r requirements.txt
+python3 setup.py develop
 mv .git/refs/heads .git_heads
 rm -rf .git
 cd /

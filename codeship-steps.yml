@@ -42,3 +42,9 @@
       service: ubuntu
       image_name: indicoio/ubuntu
       image_tag: "{{.Branch}}"
+
+    - name: Build
+      type: push
+      service: atmosphere
+      image_name: indicoio/atmosphere
+      image_tag: "{{.Branch}}"

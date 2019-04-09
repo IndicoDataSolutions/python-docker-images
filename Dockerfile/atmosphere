@@ -1,0 +1,7 @@
+FROM indicoio/alpine
+
+RUN apk update && \
+    apk add --no-cache \
+        postgresql-dev \
+        postgresql-client && \
+    pip3 install cython

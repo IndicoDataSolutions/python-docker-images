@@ -1,6 +1,6 @@
-FROM indico/numpy as numpy-base
-FROM indico/scipy as scipy-base
-FROM indico/alpine
+FROM indicoio/numpy as numpy-base
+FROM indicoio/scipy as scipy-base
+FROM indicoio/alpine
 
 COPY --from=numpy-base /root/.cache/pip/wheels/ /root/.cache/pip/wheels
 COPY --from=scipy-base /root/.cache/pip/wheels/ /root/.cache/pip/wheels

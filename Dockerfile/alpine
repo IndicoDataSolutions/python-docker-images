@@ -3,7 +3,7 @@ FROM alpine
 RUN mkdir -p /root/.cache/pip/wheels && \
     cd /root/.cache/pip/wheels && \
     apk update && \
-    apk add --no-cache build-base python3-dev python3 git bash curl && \
+    apk add --no-cache build-base python3-dev python3 git bash curl vim && \
     python3 -m ensurepip && \
     rm -r /usr/lib/python*/ensurepip && \
     pip3 install --upgrade pip setuptools wheel

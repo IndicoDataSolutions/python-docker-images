@@ -1,5 +1,5 @@
-FROM indico/tsne as tsne-base
-FROM indico/alpine
+FROM indicoio/tsne as tsne-base
+FROM indicoio/alpine
 
 COPY --from=tsne-base /root/.cache/pip/wheels/ /root/.cache/pip/wheels
 
