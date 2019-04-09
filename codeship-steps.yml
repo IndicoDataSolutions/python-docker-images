@@ -1,44 +1,44 @@
 - type: parallel
   tag: "^(latest)$"
   steps:
-  - name: Build
-    type: push
-    service: alpine
-    image_name: indico/alpine
-    image_tag: "{{.Branch}}"
+    - name: Build
+      type: push
+      service: alpine
+      image_name: indicoio/alpine
+      image_tag: "{{.Branch}}"
 
-  - name: Build
-    type: push
-    service: indicoio
-    image_name: indico/indicoio
-    image_tag: "{{.Branch}}"
+    - name: Build
+      type: push
+      service: indicoio
+      image_name: indicoio/indicoio
+      image_tag: "{{.Branch}}"
 
-  - name: Build
-    type: push
-    service: numpy
-    image_name: indico/numpy
-    image_tag: "{{.Branch}}"
+    - name: Build
+      type: push
+      service: numpy
+      image_name: indicoio/numpy
+      image_tag: "{{.Branch}}"
 
-  - name: Build
-    type: push
-    service: pandas
-    image_name: indico/pandas
-    image_tag: "{{.Branch}}"
+    - name: Build
+      type: push
+      service: pandas
+      image_name: indicoio/pandas
+      image_tag: "{{.Branch}}"
 
-  - name: Build
-    type: push
-    service: sklearn
-    image_name: indico/sklearn
-    image_tag: "{{.Branch}}"
+    - name: Build
+      type: push
+      service: sklearn
+      image_name: indicoio/sklearn
+      image_tag: "{{.Branch}}"
 
-  - name: Build
-    type: push
-    service: tsne
-    image_name: indico/tsne
-    image_tag: "{{.Branch}}"
+    - name: Build
+      type: push
+      service: tsne
+      image_name: indicoio/tsne
+      image_tag: "{{.Branch}}"
 
-  - name: Build
-    type: push
-    service: ubuntu
-    image_name: indico/ubuntu
-    image_tag: "{{.Branch}}"
+    - name: Build
+      type: push
+      service: ubuntu
+      image_name: indicoio/ubuntu
+      image_tag: "{{.Branch}}"
