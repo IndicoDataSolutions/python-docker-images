@@ -1,9 +1,9 @@
-FROM indicoio/tsne as numpy-base
+FROM indicoio/numpy as numpy-base
 FROM indicoio/alpine
 
 COPY --from=numpy-base /root/.cache/pip/wheels/ /root/.cache/pip/wheels
 
 RUN apk update && \
     apk add --no-cache openblas openblas-dev && \
-    pip3 install cython numpy && \
+    pip3 install cython numpy==1.16.0 && \
     pip3 install scipy==1.2.1

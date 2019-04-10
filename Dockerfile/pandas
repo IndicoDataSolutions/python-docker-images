@@ -5,6 +5,6 @@ FROM indicoio/alpine
 COPY --from=numpy-base /root/.cache/pip/wheels/ /root/.cache/pip/wheels
 
 RUN pip3 install cython && \
-    pip3 install numpy==1.15.4 && \
+    pip3 install numpy==1.16.0 && \
     pip3 install pandas==0.23.4
 
