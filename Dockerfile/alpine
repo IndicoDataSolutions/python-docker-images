@@ -1,4 +1,4 @@
-FROM alpine
+FROM alpine:3.7.3
 
 RUN mkdir -p /root/.cache/pip/wheels && \
     cd /root/.cache/pip/wheels && \

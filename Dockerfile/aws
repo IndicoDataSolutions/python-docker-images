@@ -1,0 +1,8 @@
+FROM indico/alpine
+
+RUN apk update && \
+    apk add --no-cache \
+    vim \
+    curl && \
+    pip3 install --upgrade pip && \
+    pip3 install boto3==1.9.127 awscli==1.16.137
