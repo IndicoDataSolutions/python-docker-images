@@ -48,3 +48,9 @@
       service: atmosphere
       image_name: indicoio/atmosphere
       image_tag: "{{.Branch}}"
+      
+    - name: Build
+      type: push
+      service: aws
+      image_name: indicoio/aws
+      image_tag: "{{.Branch}}"

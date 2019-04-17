@@ -17,6 +17,11 @@ pandas:
   build:
     dockerfile: Dockerfile/pandas
   encrypted_dockercfg_path: dockercfg.encrypted
+  
+aws:
+  build:
+    dockerfile: Dockerfile/aws
+  encrypted_dockercfg_path: dockercfg.encrypted
 
 sklearn:
   build:
