@@ -14,7 +14,7 @@ docker build -t indicoio/<name> -f Dockerfile/<name> .
 
 ```Dockerfile
 FROM indicoio/tsne as tsne-base
-FROM indicoio/alpine
+FROM indicoio/alpine:3.7.3
 
 COPY --from=tsne-base /root/.cache/pip/wheels/ /root/.cache/pip/wheels
 

@@ -1,5 +1,5 @@
 FROM indicoio/numpy as numpy-base
-FROM indicoio/alpine
+FROM indicoio/alpine:3.7.3
 
 COPY --from=numpy-base /root/.cache/pip/wheels/ /root/.cache/pip/wheels
 

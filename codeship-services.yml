@@ -1,6 +1,15 @@
-alpine:
+alpine-3-7-3:
   build:
     dockerfile: Dockerfile/alpine
+    args:
+      ALPINE_VERSION: 3.7.3
+  encrypted_dockercfg_path: dockercfg.encrypted
+
+alpine-3-9-3:
+  build:
+    dockerfile: Dockerfile/alpine
+    args:
+      ALPINE_VERSION: 3.9.3
   encrypted_dockercfg_path: dockercfg.encrypted
 
 numpy:

@@ -1,3 +1,3 @@
-FROM indicoio/alpine
+FROM indicoio/alpine:3.7.3
 
 RUN pip3 install numpy==1.15.4
