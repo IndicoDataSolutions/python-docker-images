@@ -1,9 +1,19 @@
 #! /bin/bash
-
 set -e
+
+package=${1}
+shift
+
+extras=${1}
+
 cd /
-git clone https://$GITHUB_ACCESS_TOKEN@github.com/IndicoDataSolutions/$1.git
-cd $1
-pip3 install --find-links=/root/.cache/pip/wheels -r requirements.txt
-python3 setup.py develop
+git clone https://${GITHUB_ACCESS_TOKEN}@github.com/IndicoDataSolutions/${package}.git
+cd ${package}
+
+if [ -f "requirements.txt" ]; then
+    pip3 install --find-links=/root/.cache/pip/wheels -r requirements.txt
+else
+    pip3 install --find-links=/root/.cache/pip/wheels -e ".[${extras}]"
+fi
+
 cd /

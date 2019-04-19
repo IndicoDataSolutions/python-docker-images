@@ -1,9 +1,21 @@
 
 #! /bin/bash
 
+package=${1}
+shift
+commit=${1}
+shift
+extras=${1}
+echo "Installing ${package} @ ${commit} with extras: ${extras:=None}"
+
 set -e
-cd /$1
+cd /${package}
 git fetch origin
-git checkout $2
-pip3 install --find-links=/root/.cache/pip/wheels -r requirements.txt
+git checkout ${commit}
+if [ -f "requirements.txt" ]; then
+    pip3 install --find-links=/root/.cache/pip/wheels -r requirements.txt
+else
+    pip3 install --find-links=/root/.cache/pip/wheels -e ".[${extras}]"
+fi
+
 cd /
