@@ -62,6 +62,14 @@
       image_name: gcr.io/new-indico/sklearn
       image_tag: "{{.Branch}}"
       dockercfg_service: gcr-dockercfg
+      
+    - name: Build
+      type: push
+      service: scipy
+      registry: https://gcr.io
+      image_name: gcr.io/new-indico/scipy
+      image_tag: "{{.Branch}}"
+      dockercfg_service: gcr-dockercfg
 
     - name: Build
       type: push

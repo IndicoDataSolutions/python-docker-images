@@ -37,6 +37,11 @@ sklearn:
     dockerfile: Dockerfile/sklearn
   dockercfg_service: gcr-dockercfg
 
+scipy:
+  build:
+    dockerfile: Dockerfile/scipy
+  dockercfg_service: gcr-dockercfg
+
 tsne:
   build:
     dockerfile: Dockerfile/tsne
