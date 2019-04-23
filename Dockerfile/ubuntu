@@ -16,7 +16,7 @@ RUN mkdir -p /root/.cache/pip/wheels && \
     ln -sf /usr/bin/python3.6 /usr/bin/python && \
     ln -sf /usr/local/bin/pip /usr/bin/pip3 && \
     pip3 install --upgrade pip setuptools wheel
-    
+
 ENV LANG='en_US.UTF-8' LANGUAGE='en_US:en' LC_ALL='en_US.UTF-8' PYTHONIOENCODING='utf-8'
 
 WORKDIR /root/.cache/pip/wheels
