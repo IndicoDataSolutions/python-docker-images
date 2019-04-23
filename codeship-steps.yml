@@ -19,17 +19,15 @@
 
     - name: Build
       type: push
-      service: alpine-3-7-3
+      service: indicoio-alpine-3-7-3
       image_name: indicoio/alpine
       image_tag: "3.7.3"
-      encrypted_dockercfg_path: dockercfg.encrypted
 
     - name: Build
       type: push
-      service: alpine-3-9-3
+      service: indicoio-alpine-3-9-3
       image_name: indicoio/alpine
       image_tag: "3.9.3"
-      encrypted_dockercfg_path: dockercfg.encrypted
 
     - name: Build
       type: push
@@ -62,7 +60,7 @@
       image_name: gcr.io/new-indico/sklearn
       image_tag: "{{.Branch}}"
       dockercfg_service: gcr-dockercfg
-      
+
     - name: Build
       type: push
       service: scipy
@@ -89,7 +87,7 @@
 
     - name: Build
       type: push
-      service: ubuntu
+      service: indicoio-ubuntu
       image_name: indicoio/ubuntu
       image_tag: "{{.Branch}}"
       encrypted_dockercfg_path: dockercfg.encrypted

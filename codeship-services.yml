@@ -11,6 +11,20 @@ alpine-3-9-3:
     args:
       ALPINE_VERSION: 3.9.3
   dockercfg_service: gcr-dockercfg
+  
+indicoio-alpine-3-7-3:
+  build:
+    dockerfile: Dockerfile/alpine
+    args:
+      ALPINE_VERSION: 3.7.3
+  encrypted_dockercfg_path: dockercfg.encrypted
+
+indicoio-alpine-3-9-3:
+  build:
+    dockerfile: Dockerfile/alpine
+    args:
+      ALPINE_VERSION: 3.9.3
+  encrypted_dockercfg_path: dockercfg.encrypted
 
 numpy:
   build:
