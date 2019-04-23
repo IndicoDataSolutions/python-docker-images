@@ -66,6 +66,11 @@ ubuntu:
     dockerfile: Dockerfile/ubuntu
   dockercfg_service: gcr-dockercfg
 
+indicoio-ubuntu:
+  build:
+    dockerfile: Dockerfile/ubuntu
+  encrypted_dockercfg_path: dockercfg.encrypted
+
 atmosphere:
   build:
     dockerfile: Dockerfile/atmosphere
