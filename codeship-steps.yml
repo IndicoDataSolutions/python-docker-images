@@ -81,6 +81,13 @@
 
     - name: Build
       type: push
+      service: ubuntu
+      image_name: indicoio/ubuntu
+      image_tag: "{{.Branch}}"
+      encrypted_dockercfg_path: dockercfg.encrypted
+
+    - name: Build
+      type: push
       service: atmosphere
       registry: https://gcr.io
       image_name: gcr.io/new-indico/atmosphere
