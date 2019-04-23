@@ -15,7 +15,11 @@ git checkout ${commit}
 if [ -f "requirements.txt" ]; then
     pip3 install --find-links=/root/.cache/pip/wheels -r requirements.txt
 else
-    pip3 install --find-links=/root/.cache/pip/wheels -e ".[${extras}]"
+    if [ -z $extras ]; then
+        pip3 install --find-links=/root/.cache/pip/wheels ."
+    else
+        pip3 install --find-links=/root/.cache/pip/wheels .[$extras]"
+    fi
 fi
 
 cd /
