@@ -21,5 +21,5 @@ else
         pip3 install --find-links=/root/.cache/pip/wheels .[$extras]"
     fi
 fi
-
+python3 setup.py develop --no-deps
 cd /

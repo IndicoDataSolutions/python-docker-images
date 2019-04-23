@@ -15,5 +15,5 @@ if [ -f "requirements.txt" ]; then
 else
     pip3 install --find-links=/root/.cache/pip/wheels -e ".[${extras}]"
 fi
-
+python3 setup.py develop --no-deps
 cd /
