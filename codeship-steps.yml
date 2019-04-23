@@ -19,6 +19,20 @@
 
     - name: Build
       type: push
+      service: alpine-3-7-3
+      image_name: indicoio/alpine
+      image_tag: "3.7.3"
+      encrypted_dockercfg_path: dockercfg.encrypted
+
+    - name: Build
+      type: push
+      service: alpine-3-9-3
+      image_name: indicoio/alpine
+      image_tag: "3.9.3"
+      encrypted_dockercfg_path: dockercfg.encrypted
+
+    - name: Build
+      type: push
       service: indicoio
       registry: https://gcr.io
       image_name: gcr.io/new-indico/indicoio
