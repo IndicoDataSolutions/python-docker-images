@@ -79,6 +79,14 @@
 
     - name: Build
       type: push
+      service: ubuntu_gpu
+      registry: https://gcr.io
+      image_name: gcr.io/new-indico/ubuntu_gpu
+      image_tag: "{{.Branch}}"
+      dockercfg_service: gcr-dockercfg
+
+    - name: Build
+      type: push
       service: ubuntu
       registry: https://gcr.io
       image_name: gcr.io/new-indico/ubuntu
@@ -99,7 +107,7 @@
       image_name: gcr.io/new-indico/atmosphere
       image_tag: "{{.Branch}}"
       dockercfg_service: gcr-dockercfg
-      
+
     - name: Build
       type: push
       service: aws

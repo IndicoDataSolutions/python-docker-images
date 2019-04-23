@@ -1,0 +1,27 @@
+FROM gcr.io/new-indico/ubuntu
+
+LABEL author="Chris Lee"
+LABEL email="chris@indico.io"
+
+ENV PATH=/usr/local/nvidia/bin:/usr/local/cuda/bin:${PATH} LD_LIBRARY_PATH=/usr/local/lib:/usr/local/cuda/lib64:/usr/local/nvidia/lib:/usr/local/nvidia/lib64 TERM=xterm NVIDIA_VISIBLE_DEVICES=all NVIDIA_DRIVER_CAPABILITIES=compute,utility  NVIDIA_REQUIRE_CUDA="cuda>=9.0"
+
+RUN apt-get update && \
+    wget --quiet https://developer.nvidia.com/compute/cuda/9.0/Prod/local_installers/cuda_9.0.176_384.81_linux-run -O cuda-ubuntu.run && \
+    chmod +x cuda-ubuntu.run && \
+    ./cuda-ubuntu.run --no-opengl-libs -silent --no-drm --toolkit && \
+    rm cuda-ubuntu.run && \
+    cd /usr/local/cuda && \
+    rm -r nvvm/libnvvm-samples && \
+    mkdir ../save/ && \
+    mv include bin lib64 nvvm ../save && \
+    rm -r * && \
+    mv ../save/* . && \
+    rmdir ../save && \
+    cd / && \
+    wget --quiet https://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1604/x86_64/libcudnn7_7.2.1.38-1+cuda9.0_amd64.deb -O cudnn.deb && \
+    dpkg -i cudnn.deb && \
+    rm cudnn.deb && \
+    cd / && \
+    wget --quiet https://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1604/x86_64/libcudnn7-dev_7.2.1.38-1+cuda9.0_amd64.deb -O cudnn.deb && \
+    dpkg -i cudnn.deb && \
+    rm cudnn.deb
