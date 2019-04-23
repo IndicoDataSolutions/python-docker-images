@@ -3,51 +3,56 @@ alpine-3-7-3:
     dockerfile: Dockerfile/alpine
     args:
       ALPINE_VERSION: 3.7.3
-  encrypted_dockercfg_path: dockercfg.encrypted
+  dockercfg_service: gcr-dockercfg
 
 alpine-3-9-3:
   build:
     dockerfile: Dockerfile/alpine
     args:
       ALPINE_VERSION: 3.9.3
-  encrypted_dockercfg_path: dockercfg.encrypted
+  dockercfg_service: gcr-dockercfg
 
 numpy:
   build:
     dockerfile: Dockerfile/numpy
-  encrypted_dockercfg_path: dockercfg.encrypted
+  dockercfg_service: gcr-dockercfg
 
 indicoio:
   build:
     dockerfile: Dockerfile/indicoio
-  encrypted_dockercfg_path: dockercfg.encrypted
+  dockercfg_service: gcr-dockercfg
 
 pandas:
   build:
     dockerfile: Dockerfile/pandas
-  encrypted_dockercfg_path: dockercfg.encrypted
+  dockercfg_service: gcr-dockercfg
   
 aws:
   build:
     dockerfile: Dockerfile/aws
-  encrypted_dockercfg_path: dockercfg.encrypted
+  dockercfg_service: gcr-dockercfg
 
 sklearn:
   build:
     dockerfile: Dockerfile/sklearn
-  encrypted_dockercfg_path: dockercfg.encrypted
+  dockercfg_service: gcr-dockercfg
 
 tsne:
   build:
     dockerfile: Dockerfile/tsne
-  encrypted_dockercfg_path: dockercfg.encrypted
+  dockercfg_service: gcr-dockercfg
 
 ubuntu:
   build:
     dockerfile: Dockerfile/ubuntu
-  encrypted_dockercfg_path: dockercfg.encrypted
+  dockercfg_service: gcr-dockercfg
 
 atmosphere:
   build:
     dockerfile: Dockerfile/atmosphere
-  encrypted_dockercfg_path: dockercfg.encrypted
+  dockercfg_service: gcr-dockercfg
+
+gcr-dockercfg:
+  image: indicoio/gcr-dockercfg
+  add_docker: true
+  encrypted_env_file: codeship.env

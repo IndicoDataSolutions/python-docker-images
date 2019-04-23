@@ -4,59 +4,79 @@
     - name: Build
       type: push
       service: alpine-3-7-3
-      image_name: indicoio/alpine
+      registry: https://gcr.io
+      image_name: gcr.io/new-indico/alpine
       image_tag: "3.7.3"
+      dockercfg_service: gcr-dockercfg
 
     - name: Build
       type: push
       service: alpine-3-9-3
-      image_name: indicoio/alpine
+      registry: https://gcr.io
+      image_name: gcr.io/new-indico/alpine
       image_tag: "3.9.3"
+      dockercfg_service: gcr-dockercfg
 
     - name: Build
       type: push
       service: indicoio
-      image_name: indicoio/indicoio
+      registry: https://gcr.io
+      image_name: gcr.io/new-indico/indicoio
       image_tag: "{{.Branch}}"
+      dockercfg_service: gcr-dockercfg
 
     - name: Build
       type: push
       service: numpy
-      image_name: indicoio/numpy
+      registry: https://gcr.io
+      image_name: gcr.io/new-indico/numpy
       image_tag: "{{.Branch}}"
+      dockercfg_service: gcr-dockercfg
 
     - name: Build
       type: push
       service: pandas
-      image_name: indicoio/pandas
+      registry: https://gcr.io
+      image_name: gcr.io/new-indico/pandas
       image_tag: "{{.Branch}}"
+      dockercfg_service: gcr-dockercfg
 
     - name: Build
       type: push
       service: sklearn
-      image_name: indicoio/sklearn
+      registry: https://gcr.io
+      image_name: gcr.io/new-indico/sklearn
       image_tag: "{{.Branch}}"
+      dockercfg_service: gcr-dockercfg
 
     - name: Build
       type: push
       service: tsne
-      image_name: indicoio/tsne
+      registry: https://gcr.io
+      image_name: gcr.io/new-indico/tsne
       image_tag: "{{.Branch}}"
+      dockercfg_service: gcr-dockercfg
 
     - name: Build
       type: push
       service: ubuntu
-      image_name: indicoio/ubuntu
+      registry: https://gcr.io
+      image_name: gcr.io/new-indico/ubuntu
       image_tag: "{{.Branch}}"
+      dockercfg_service: gcr-dockercfg
 
     - name: Build
       type: push
       service: atmosphere
-      image_name: indicoio/atmosphere
+      registry: https://gcr.io
+      image_name: gcr.io/new-indico/atmosphere
       image_tag: "{{.Branch}}"
+      dockercfg_service: gcr-dockercfg
       
     - name: Build
       type: push
       service: aws
-      image_name: indicoio/aws
+      registry: https://gcr.io
+      image_name: gcr.io/new-indico/aws
       image_tag: "{{.Branch}}"
+      dockercfg_service: gcr-dockercfg

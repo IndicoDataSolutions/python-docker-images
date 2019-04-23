@@ -1,6 +1,6 @@
-FROM indicoio/numpy as numpy-base
+FROM gcr.io/new-indico/numpy as numpy-base
 
-FROM indicoio/alpine:3.7.3
+FROM gcr.io/new-indico/alpine:3.7.3
 
 COPY --from=numpy-base /root/.cache/pip/wheels/ /root/.cache/pip/wheels
 
