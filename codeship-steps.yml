@@ -87,6 +87,13 @@
 
     - name: Build
       type: push
+      service: ubuntu-18-04
+      registry: https://gcr.io
+      image_name: gcr.io/new-indico/ubuntu
+      image_tag: 18.04
+
+    - name: Build
+      type: push
       service: ubuntu
       registry: https://gcr.io
       image_name: gcr.io/new-indico/ubuntu
