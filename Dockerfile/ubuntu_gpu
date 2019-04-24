@@ -5,8 +5,11 @@ LABEL email="chris@indico.io"
 
 ENV PATH=/usr/local/nvidia/bin:/usr/local/cuda/bin:${PATH} LD_LIBRARY_PATH=/usr/local/lib:/usr/local/cuda/lib64:/usr/local/nvidia/lib:/usr/local/nvidia/lib64 TERM=xterm NVIDIA_VISIBLE_DEVICES=all NVIDIA_DRIVER_CAPABILITIES=compute,utility  NVIDIA_REQUIRE_CUDA="cuda>=10.0"
 
+RUN wget --quiet https://developer.nvidia.com/compute/cuda/10.1/Prod/local_installers/cuda_10.1.105_418.39_linux.run -O cuda-ubuntu.run && \
+    wget --quiet https://developer.nvidia.com/compute/machine-learning/cudnn/secure/v7.5.1/prod/10.1_20190418/Ubuntu16_04-x64/libcudnn7_7.5.1.10-1%2Bcuda10.1_amd64.deb -O cudnn.deb && \
+    wget --quiet https://developer.nvidia.com/compute/machine-learning/cudnn/secure/v7.5.1/prod/10.1_20190418/Ubuntu16_04-x64/libcudnn7-dev_7.5.1.10-1%2Bcuda10.1_amd64.deb -O cudnn.deb
+
 RUN apt-get update && \
-    wget --quiet https://developer.nvidia.com/compute/cuda/10.1/Prod/local_installers/cuda_10.1.105_418.39_linux.run -O cuda-ubuntu.run && \
     chmod +x cuda-ubuntu.run && \
     ./cuda-ubuntu.run --no-opengl-libs -silent --no-drm --toolkit && \
     rm cuda-ubuntu.run && \
@@ -18,10 +21,8 @@ RUN apt-get update && \
     mv ../save/* . && \
     rmdir ../save && \
     cd / && \
-    wget --quiet https://developer.nvidia.com/compute/machine-learning/cudnn/secure/v7.5.1/prod/10.1_20190418/Ubuntu16_04-x64/libcudnn7_7.5.1.10-1%2Bcuda10.1_amd64.deb -O cudnn.deb && \
     dpkg -i cudnn.deb && \
     rm cudnn.deb && \
     cd / && \
-    wget --quiet https://developer.nvidia.com/compute/machine-learning/cudnn/secure/v7.5.1/prod/10.1_20190418/Ubuntu16_04-x64/libcudnn7-dev_7.5.1.10-1%2Bcuda10.1_amd64.deb -O cudnn.deb && \
     dpkg -i cudnn.deb && \
     rm cudnn.deb
