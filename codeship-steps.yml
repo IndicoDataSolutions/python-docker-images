@@ -1,7 +1,7 @@
 - type: parallel
   tag: "^(latest)$"
   steps:
-    - name: Build
+    - name: alpine-3-7-3
       type: push
       service: alpine-3-7-3
       registry: https://gcr.io
@@ -9,7 +9,7 @@
       image_tag: "3.7.3"
       dockercfg_service: gcr-dockercfg
 
-    - name: Build
+    - name: alpine-3-9-3
       type: push
       service: alpine-3-9-3
       registry: https://gcr.io
@@ -17,19 +17,19 @@
       image_tag: "3.9.3"
       dockercfg_service: gcr-dockercfg
 
-    - name: Build
+    - name: indicoio-alpine-3-7-3
       type: push
       service: indicoio-alpine-3-7-3
       image_name: indicoio/alpine
       image_tag: "3.7.3"
 
-    - name: Build
+    - name: indicoio-alpine-3-9-3
       type: push
       service: indicoio-alpine-3-9-3
       image_name: indicoio/alpine
       image_tag: "3.9.3"
 
-    - name: Build
+    - name: indicoio
       type: push
       service: indicoio
       registry: https://gcr.io
@@ -37,7 +37,7 @@
       image_tag: "{{.Branch}}"
       dockercfg_service: gcr-dockercfg
 
-    - name: Build
+    - name: numpy
       type: push
       service: numpy
       registry: https://gcr.io
@@ -45,7 +45,7 @@
       image_tag: "{{.Branch}}"
       dockercfg_service: gcr-dockercfg
 
-    - name: Build
+    - name: pandas
       type: push
       service: pandas
       registry: https://gcr.io
@@ -53,7 +53,7 @@
       image_tag: "{{.Branch}}"
       dockercfg_service: gcr-dockercfg
 
-    - name: Build
+    - name: sklearn
       type: push
       service: sklearn
       registry: https://gcr.io
@@ -61,7 +61,7 @@
       image_tag: "{{.Branch}}"
       dockercfg_service: gcr-dockercfg
 
-    - name: Build
+    - name: scipy
       type: push
       service: scipy
       registry: https://gcr.io
@@ -69,7 +69,7 @@
       image_tag: "{{.Branch}}"
       dockercfg_service: gcr-dockercfg
 
-    - name: Build
+    - name: tsne
       type: push
       service: tsne
       registry: https://gcr.io
@@ -77,7 +77,7 @@
       image_tag: "{{.Branch}}"
       dockercfg_service: gcr-dockercfg
 
-    - name: Build
+    - name: ubuntu_gpu
       type: push
       service: ubuntu_gpu
       registry: https://gcr.io
@@ -85,14 +85,14 @@
       image_tag: "{{.Branch}}"
       dockercfg_service: gcr-dockercfg
 
-    - name: Build
+    - name: ubuntu-18-04
       type: push
       service: ubuntu-18-04
       registry: https://gcr.io
       image_name: gcr.io/new-indico/ubuntu
       image_tag: 18.04
 
-    - name: Build
+    - name: ubuntu
       type: push
       service: ubuntu
       registry: https://gcr.io
@@ -100,14 +100,14 @@
       image_tag: "{{.Branch}}"
       dockercfg_service: gcr-dockercfg
 
-    - name: Build
+    - name: indicoio-ubuntu
       type: push
       service: indicoio-ubuntu
       image_name: indicoio/ubuntu
       image_tag: "{{.Branch}}"
       encrypted_dockercfg_path: dockercfg.encrypted
 
-    - name: Build
+    - name: atmosphere
       type: push
       service: atmosphere
       registry: https://gcr.io
@@ -115,7 +115,7 @@
       image_tag: "{{.Branch}}"
       dockercfg_service: gcr-dockercfg
 
-    - name: Build
+    - name: aws
       type: push
       service: aws
       registry: https://gcr.io
