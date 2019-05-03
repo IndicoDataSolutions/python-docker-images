@@ -9,10 +9,7 @@ RUN mkdir -p /root/.cache/pip/wheels && \
     locale-gen en_US.UTF-8 && \
     add-apt-repository ppa:jonathonf/python-3.6 && \
     apt-get update && \
-    apt-get install -y --no-install-recommends python3.6 python3.6-dev git curl wget vim && \
-    wget https://bootstrap.pypa.io/get-pip.py && \
-    python3.6 get-pip.py && \
-    rm get-pip.py && \
+    apt-get install -y --no-install-recommends python3.6 python3.6-dev python3-pip git curl wget vim && \
     ln -sf /usr/bin/python3.6 /usr/bin/python3 && \
     ln -sf /usr/bin/python3.6 /usr/bin/python && \
     ln -sf /usr/local/bin/pip /usr/bin/pip3 && \
