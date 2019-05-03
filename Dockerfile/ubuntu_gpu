@@ -3,7 +3,7 @@ FROM gcr.io/new-indico/ubuntu
 LABEL author="Chris Lee"
 LABEL email="chris@indico.io"
 
-ENV PATH=/usr/local/nvidia/bin:/usr/local/cuda/bin:${PATH} LD_LIBRARY_PATH=/usr/local/lib:/usr/local/cuda/lib64:/usr/local/nvidia/lib:/usr/local/nvidia/lib64 TERM=xterm NVIDIA_VISIBLE_DEVICES=all NVIDIA_DRIVER_CAPABILITIES=compute,utility  NVIDIA_REQUIRE_CUDA="cuda>=10.0"
+ENV PATH=/usr/local/nvidia/bin:/usr/local/cuda/bin:${PATH} LD_LIBRARY_PATH=/usr/local/lib:/usr/local/cuda/lib64:/usr/local/nvidia/lib:/usr/local/nvidia/lib64:/usr/lib/x84_64-linux-gnu:/usr/lib64:/usr/lib  TERM=xterm NVIDIA_VISIBLE_DEVICES=all NVIDIA_DRIVER_CAPABILITIES=compute,utility  NVIDIA_REQUIRE_CUDA="cuda>=10.0"
 
 WORKDIR /
 
