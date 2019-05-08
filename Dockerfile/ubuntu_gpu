@@ -1,29 +1,27 @@
-FROM gcr.io/new-indico/ubuntu
+ARG UBUNTU_VERSION=18.04
+FROM gcr.io/new-indico/ubuntu:${UBUNTU_VERSION}
 
 LABEL author="Chris Lee"
 LABEL email="chris@indico.io"
 
+ENV CUDA_VERSION 10.1.105
+ENV CUDA_PKG_VERSION 10-1=$CUDA_VERSION-1
+ENV PATH /usr/local/nvidia/bin:/usr/local/cuda/bin:${PATH}
+ENV LD_LIBRARY_PATH /usr/local/nvidia/lib:/usr/local/nvidia/lib64
+ENV NVIDIA_VISIBLE_DEVICES all
+ENV NVIDIA_DRIVER_CAPABILITIES compute,utility
+ENV NVIDIA_REQUIRE_CUDA "cuda>=10.1 brand=tesla,driver>=384,driver<385 brand=tesla,driver>=410,driver<411"
 ENV PATH=/usr/local/nvidia/bin:/usr/local/cuda/bin:${PATH} LD_LIBRARY_PATH=/usr/local/lib:/usr/local/cuda/lib64:/usr/local/nvidia/lib:/usr/local/nvidia/lib64:/usr/lib/x84_64-linux-gnu:/usr/lib64:/usr/lib  TERM=xterm NVIDIA_VISIBLE_DEVICES=all NVIDIA_DRIVER_CAPABILITIES=compute,utility  NVIDIA_REQUIRE_CUDA="cuda>=10.0"
 
-WORKDIR /
-
-RUN wget --quiet https://developer.nvidia.com/compute/cuda/10.1/Prod/local_installers/cuda_10.1.105_418.39_linux.run -O cuda-ubuntu.run
 RUN wget --quiet https://storage.googleapis.com/indicoapi/cudnn-dev.deb -O cudnn-runtime.deb
 
-RUN apt-get update && \
-    apt-get install -y libxml2 libstdc++6 && \
-    chmod +x cuda-ubuntu.run && \
-    ./cuda-ubuntu.run --no-opengl-libs --silent --no-drm --toolkit && \
-    rm cuda-ubuntu.run && \
-    cd /usr/local/cuda && \
-    rm -r nvvm/libnvvm-samples && \
-    mkdir ../save/ && \
-    mv include bin lib64 nvvm ../save && \
-    rm -r * && \
-    mv ../save/* . && \
-    rmdir ../save && \
-    cd /
-
-RUN dpkg -i cudnn-runtime.deb && \
-    rm cudnn-runtime.deb && \
-    cd /
+RUN apt-get update && apt-get install -y --no-install-recommends gnupg2 curl ca-certificates && \
+    curl -fsSL https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/7fa2af80.pub | apt-key add - && \
+    echo "deb https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64 /" > /etc/apt/sources.list.d/cuda.list && \
+    echo "deb https://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1804/x86_64 /" > /etc/apt/sources.list.d/nvidia-ml.list && \
+    apt-get update && apt-get install -y --no-install-recommends \
+        cuda-cudart-$CUDA_PKG_VERSION \
+        cuda-compat-10-1 && \
+    ln -s cuda-10.1 /usr/local/cuda && \
+    dpkg -i cudnn-runtime.deb && \
+    rm cudnn-runtime.deb
