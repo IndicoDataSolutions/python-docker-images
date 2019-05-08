@@ -13,9 +13,8 @@ ENV NVIDIA_DRIVER_CAPABILITIES compute,utility
 ENV NVIDIA_REQUIRE_CUDA "cuda>=10.1 brand=tesla,driver>=384,driver<385 brand=tesla,driver>=410,driver<411"
 ENV PATH=/usr/local/nvidia/bin:/usr/local/cuda/bin:${PATH} LD_LIBRARY_PATH=/usr/local/lib:/usr/local/cuda/lib64:/usr/local/nvidia/lib:/usr/local/nvidia/lib64:/usr/lib/x84_64-linux-gnu:/usr/lib64:/usr/lib  TERM=xterm NVIDIA_VISIBLE_DEVICES=all NVIDIA_DRIVER_CAPABILITIES=compute,utility  NVIDIA_REQUIRE_CUDA="cuda>=10.0"
 
-RUN wget --quiet https://storage.googleapis.com/indicoapi/cudnn-dev.deb -O cudnn-runtime.deb
-
-RUN apt-get update && apt-get install -y --no-install-recommends gnupg2 curl ca-certificates && \
+RUN apt-get update && apt-get install -y --no-install-recommends gnupg2 curl ca-certificates wget && \
+    wget --quiet https://storage.googleapis.com/indicoapi/cudnn-dev.deb -O cudnn-runtime.deb && \
     curl -fsSL https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/7fa2af80.pub | apt-key add - && \
     echo "deb https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64 /" > /etc/apt/sources.list.d/cuda.list && \
     echo "deb https://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1804/x86_64 /" > /etc/apt/sources.list.d/nvidia-ml.list && \

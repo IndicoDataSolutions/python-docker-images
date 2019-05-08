@@ -98,6 +98,14 @@
       registry: https://gcr.io
       image_name: gcr.io/new-indico/ubuntu
       image_tag: 18.04
+      dockercfg_service: gcr-dockercfg
+
+    - name: ubuntu-18-04-indicoio
+      type: push
+      service: ubuntu-18-04
+      image_name: indicoio/ubuntu
+      encrypted_dockercfg_path: dockercfg.encrypted
+      image_tag: 18.04
 
     - name: ubuntu
       type: push
