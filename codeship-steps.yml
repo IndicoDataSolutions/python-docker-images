@@ -85,6 +85,13 @@
       image_tag: "{{.Branch}}"
       dockercfg_service: gcr-dockercfg
 
+    - name: indicoio_ubuntu_gpu
+      type: push
+      service: ubuntu_gpu
+      image_name: indicoio/ubuntu_gpu
+      image_tag: "{{.Branch}}"
+      encrypted_dockercfg_path: dockercfg.encrypted
+
     - name: ubuntu-18-04
       type: push
       service: ubuntu-18-04

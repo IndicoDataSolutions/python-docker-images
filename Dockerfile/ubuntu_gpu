@@ -1,5 +1,5 @@
 ARG UBUNTU_VERSION=18.04
-FROM gcr.io/new-indico/ubuntu:${UBUNTU_VERSION}
+FROM indicoio/ubuntu:${UBUNTU_VERSION}
 
 LABEL author="Chris Lee"
 LABEL email="chris@indico.io"
