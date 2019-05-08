@@ -61,10 +61,16 @@ tsne:
     dockerfile: Dockerfile/tsne
   dockercfg_service: gcr-dockercfg
 
-ubuntu_gpu:
+ubuntu-gpu:
   build:
     dockerfile: Dockerfile/ubuntu_gpu
   dockercfg_service: gcr-dockercfg
+
+indicoio-ubuntu-gpu:
+  build:
+    dockerfile: Dockerfile/ubuntu_gpu
+  encrypted_dockercfg_path: dockercfg.encrypted
+
 
 ubuntu:
   build:
@@ -81,7 +87,15 @@ ubuntu-18-04:
     dockerfile: Dockerfile/ubuntu_18_04
     args:
       UBUNTU_VERSION: 18.04
+  dockercfg_service: gcr-dockercfg
+
+indicoio-ubuntu-18-04:
+  build:
+    dockerfile: Dockerfile/ubuntu_18_04
+    args:
+      UBUNTU_VERSION: 18.04
   encrypted_dockercfg_path: dockercfg.encrypted
+
 
 atmosphere:
   build:
