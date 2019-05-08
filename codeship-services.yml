@@ -78,7 +78,7 @@ indicoio-ubuntu:
 
 ubuntu-18-04:
   build:
-    dockerfile: Dockerfile/ubuntu
+    dockerfile: Dockerfile/ubuntu_18_04
     args:
       UBUNTU_VERSION: 18.04
   encrypted_dockercfg_path: dockercfg.encrypted
