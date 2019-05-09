@@ -26,6 +26,11 @@ indicoio-alpine-3-9-3:
       ALPINE_VERSION: 3.9.3
   encrypted_dockercfg_path: dockercfg.encrypted
 
+nginx-uploader:
+  build:
+    dockerfile: Dockerfile/nginx-uploader
+  dockercfg_service: gcr-dockercfg
+
 numpy:
   build:
     dockerfile: Dockerfile/numpy

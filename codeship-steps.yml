@@ -141,3 +141,11 @@
         image_name: gcr.io/new-indico/aws
         image_tag: "{{.Branch}}"
         dockercfg_service: gcr-dockercfg
+
+      - name: nginx-uploader
+        type: push
+        service: nginx-uploader
+        registry: https://gcr.io
+        image_name: gcr.io/new-indico/nginx-uploader
+        image_tag: "{{.Branch}}"
+        dockercfg_service: gcr-dockercfg
