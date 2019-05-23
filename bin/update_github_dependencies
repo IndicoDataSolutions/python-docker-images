@@ -2,10 +2,9 @@
 #! /bin/bash
 
 package=${1}
-shift
-commit=${1}
-shift
-extras=${1}
+commit=${2}
+extras=${3}
+
 echo "Installing ${package} @ ${commit} with extras: ${extras:=None}"
 
 set -e

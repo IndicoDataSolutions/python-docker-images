@@ -2,13 +2,16 @@
 set -e
 
 package=${1}
-shift
-
-extras=${1}
+extras=${2}
+commit=${3}
 
 cd /
 git clone https://${GITHUB_ACCESS_TOKEN}@github.com/IndicoDataSolutions/${package}.git
 cd ${package}
+
+if [ ! -z $commit ]; then
+    git checkout ${commit}
+fi
 
 if [ -f "requirements.txt" ]; then
     pip3 install --find-links=/root/.cache/pip/wheels -r requirements.txt
