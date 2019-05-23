@@ -12,12 +12,13 @@ cd ${package}
 
 if [ -f "requirements.txt" ]; then
     pip3 install --find-links=/root/.cache/pip/wheels -r requirements.txt
-else
-    if [ -z $extras ]; then
-        pip3 install --find-links=/root/.cache/pip/wheels -e .
-    else
-        pip3 install --find-links=/root/.cache/pip/wheels -e .[$extras]
-    fi
 fi
+
+if [ -z $extras ]; then
+    pip3 install --find-links=/root/.cache/pip/wheels -e .
+else
+    pip3 install --find-links=/root/.cache/pip/wheels -e .[$extras]
+fi
+
 python3 setup.py develop --no-deps
 cd /
