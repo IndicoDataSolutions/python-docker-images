@@ -18,9 +18,9 @@ if [ -f "requirements.txt" ]; then
 fi
 
 if [ -z $extras ]; then
-    pip3 install --process-dependency-links --find-links=/root/.cache/pip/wheels -e .
+    pip3 install --find-links=/root/.cache/pip/wheels -e .
 else
-    pip3 install --process-dependency-links --find-links=/root/.cache/pip/wheels -e .[$extras]
+    pip3 install --find-links=/root/.cache/pip/wheels -e .[$extras]
 fi
 
 python3 setup.py develop --no-deps
