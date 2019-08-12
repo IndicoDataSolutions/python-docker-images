@@ -4,7 +4,7 @@ function postgresql {
 }
 
 function rabbitmq {
-  python3 -c "from atmosphere.celery_app import rabbitmq_connection_test; rabbitmq_connection_test()"
+  python3 -c "from jetstream.app import JetFlow; JetFlow('test').broker_connection_ok()"
 }
 
 function cyclone {
