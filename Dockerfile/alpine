@@ -12,7 +12,8 @@ RUN mkdir -p /root/.cache/pip/wheels && \
         coreutils \
         bash \
         curl \
-        vim && \
+        vim \
+        procps && \
     python3 -m ensurepip && \
     rm -r /usr/lib/python*/ensurepip && \
     pip3 install --upgrade pip setuptools wheel
