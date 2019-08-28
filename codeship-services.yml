@@ -85,6 +85,11 @@ ubuntu-gpu:
     dockerfile: Dockerfile/ubuntu_gpu
   dockercfg_service: gcr-dockercfg
 
+tensorflow-ubuntu:
+  build:
+    dockerfile: Dockerfile/tensorflow_ubuntu
+  dockercfg_service: gcr-dockercfg
+
 indicoio-ubuntu-gpu:
   build:
     dockerfile: Dockerfile/ubuntu_gpu

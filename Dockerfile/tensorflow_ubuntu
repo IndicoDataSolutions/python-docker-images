@@ -1,4 +1,4 @@
-FROM tensorflow/tensorflow:1.14.0-gpu-py3 as tensorflow-image
+FROM tensorflow/tensorflow:1.13.2-gpu-py3 as tensorflow-image
 
 RUN mkdir -p /root/.cache/pip/wheels && \
     cd /root/.cache/pip/wheels && \
