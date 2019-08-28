@@ -56,6 +56,13 @@ sklearn:
     dockerfile: Dockerfile/sklearn
   dockercfg_service: gcr-dockercfg
 
+sklearn-0-21-3:
+  build:
+    dockerfile: Dockerfile/sklearn
+    args:
+      SKLEARN_VERSION: 0.21.3
+  dockercfg_service: gcr-dockercfg
+
 scipy:
   build:
     dockerfile: Dockerfile/scipy
