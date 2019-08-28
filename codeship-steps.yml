@@ -92,7 +92,23 @@
         service: sklearn
         registry: https://gcr.io
         image_name: gcr.io/new-indico/sklearn
-        image_tag: "{{.Branch}}"
+        image_tag: "0.19.2"
+        dockercfg_service: gcr-dockercfg
+
+      - name: sklearn-0-20-2
+        type: push
+        service: sklearn-0-20-2
+        registry: https://gcr.io
+        image_name: gcr.io/new-indico/sklearn
+        image_tag: "0.20.2"
+        dockercfg_service: gcr-dockercfg
+
+      - name: sklearn-0-21-3
+        type: push
+        service: sklearn-0-21-3
+        registry: https://gcr.io
+        image_name: gcr.io/new-indico/sklearn
+        image_tag: "0.21.3"
         dockercfg_service: gcr-dockercfg
 
       - name: scipy
