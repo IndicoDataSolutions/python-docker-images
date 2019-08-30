@@ -13,7 +13,7 @@ ENV LD_LIBRARY_PATH /usr/local/lib:/usr/local/cuda/lib64:/usr/local/nvidia/lib:/
 ENV NVIDIA_VISIBLE_DEVICES all
 ENV NVIDIA_DRIVER_CAPABILITIES compute,utility
 ENV NVIDIA_REQUIRE_CUDA "cuda>=10.0 brand=tesla,driver>=430"
-<<<<<<< HEAD
+
 ENV PATH=/usr/local/nvidia/bin:/usr/local/cuda/bin:${PATH} LD_LIBRARY_PATH=/usr/local/lib:/usr/local/cuda/lib64:/usr/local/nvidia/lib:/usr/local/nvidia/lib64:/usr/lib/x84_64-linux-gnu:/usr/lib64:/usr/lib  TERM=xterm NVIDIA_VISIBLE_DEVICES=all NVIDIA_DRIVER_CAPABILITIES=compute,utility  NVIDIA_REQUIRE_CUDA="cuda>=10.0"
 
 COPY --from=tensorflow-image /usr/local/cuda-10.0/ /usr/local/cuda-10.0

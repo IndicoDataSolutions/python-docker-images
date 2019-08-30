@@ -47,6 +47,14 @@
         image_tag: 1.13.2
         dockercfg_service: gcr-dockercfg
 
+      - name: tensorflow-ubuntu-1.14.0
+        type: push
+        service: tensorflow-ubuntu
+        registry: https://gcr.io
+        image_name: gcr.io/new-indico/tensorflow_ubuntu
+        image_tag: 1.14.0
+        dockercfg_service: gcr-dockercfg
+
       - name: ubuntu-18-04-indicoio
         type: push
         service: indicoio-ubuntu-18-04
