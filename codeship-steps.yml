@@ -87,6 +87,14 @@
         image_tag: "{{.Branch}}"
         dockercfg_service: gcr-dockercfg
 
+      - name: flower
+        type: push
+        service: flower
+        registry: https://gcr.io
+        image_name: gcr.io/new-indico/flower
+        image_tag: "{{.Branch}}"
+        dockercfg_service: gcr-dockercfg
+
       - name: numpy
         type: push
         service: numpy

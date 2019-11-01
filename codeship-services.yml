@@ -36,6 +36,11 @@ numpy:
     dockerfile: Dockerfile/numpy
   dockercfg_service: gcr-dockercfg
 
+flower:
+  build:
+    dockerfile: Dockerfile/flower
+  dockercfg_service: gcr-dockercfg
+
 indicoio:
   build:
     dockerfile: Dockerfile/indicoio
