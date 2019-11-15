@@ -29,6 +29,8 @@ indicoio-alpine-3-9-3:
 nginx-uploader:
   build:
     dockerfile: Dockerfile/nginx-uploader
+    args:
+      nginx_version: 1.17.5
   dockercfg_service: gcr-dockercfg
 
 numpy:
