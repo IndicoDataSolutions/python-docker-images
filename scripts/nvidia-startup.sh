@@ -9,34 +9,9 @@ CHECK_INTERVAL_SECONDS="30"
 EXEC=(nsenter -t 1 -m -u -i -n -p --)
 TOKEN=$(cat /var/run/secrets/kubernetes.io/serviceaccount/token)
 POD_NAME=$(uname -n)
+NAMESPACE="default"
 NODE_NAME=$(curl -k -H "Authorization: Bearer $TOKEN" -H "Content-Type: application/json" \
-  -X GET https://kubernetes/api/v1/namespaces/default/pods/$POD_NAME | jq -r ". | {node: .spec.nodeName} | .node")
-
-do_startup_script() {
-
-  remove_node_taints
-  local err=0;
-
-  "${EXEC[@]}" bash -c "${STARTUP_SCRIPT}" && err=0 || err=$?
-  if [[ ${err} != 0 ]]; then
-    echo "!!! startup-script failed! exit code '${err}'" 1>&2
-    return 1
-  fi
-
-  "${EXEC[@]}" touch "${CHECKPOINT_PATH}"
-  echo "!!! startup-script succeeded!" 1>&2
-  add_nvidia_node_taint
-  return 0
-}
-
-while :; do
-  "${EXEC[@]}" stat "${CHECKPOINT_PATH}" > /dev/null 2>&1 && err=0 || err=$?
-  if [[ ${err} != 0 ]]; then
-    do_startup_script
-  fi
-
-  sleep "${CHECK_INTERVAL_SECONDS}"
-done
+  -X GET https://kubernetes/api/v1/namespaces/$NAMESPACE/pods/$POD_NAME | jq -r ". | {node: .spec.nodeName} | .node")
 
 remove_node_taints() {
     while true; do
@@ -68,3 +43,32 @@ add_nvidia_node_taint() {
       -H 'Content-Type: application/json-patch+json' \
       https://kubernetes/api/v1/nodes/$NODE_NAME
 }
+
+
+
+do_startup_script() {
+
+  add_nvidia_node_taint
+
+  local err=0;
+
+  "${EXEC[@]}" bash -c "${STARTUP_SCRIPT}" && err=0 || err=$?
+  if [[ ${err} != 0 ]]; then
+    echo "!!! startup-script failed! exit code '${err}'" 1>&2
+    return 1
+  fi
+
+  "${EXEC[@]}" touch "${CHECKPOINT_PATH}"
+  echo "!!! startup-script succeeded!" 1>&2
+  remove_node_taints
+  return 0
+}
+
+while :; do
+  "${EXEC[@]}" stat "${CHECKPOINT_PATH}" > /dev/null 2>&1 && err=0 || err=$?
+  if [[ ${err} != 0 ]]; then
+    do_startup_script
+  fi
+
+  sleep "${CHECK_INTERVAL_SECONDS}"
+done
