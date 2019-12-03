@@ -43,6 +43,11 @@ flower:
     dockerfile: Dockerfile/flower
   dockercfg_service: gcr-dockercfg
 
+nvidia-install:
+  build:
+    dockerfile: Dockerfile/nvidia-install
+  dockercfg_service: gcr-dockercfg
+
 indicoio:
   build:
     dockerfile: Dockerfile/indicoio

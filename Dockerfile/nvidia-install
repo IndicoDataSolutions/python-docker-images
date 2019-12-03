@@ -1,0 +1,12 @@
+FROM indicoio/alpine:3.9.3
+
+RUN apk update && \
+    apk add --no-cache \
+    jq \
+    curl
+
+COPY ./scripts/ /nvidia-installation
+
+WORKDIR /nvidia-installation
+
+CMD /nvidia-installation/nvidia-startup.sh

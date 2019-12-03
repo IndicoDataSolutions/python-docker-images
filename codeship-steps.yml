@@ -95,6 +95,14 @@
         image_tag: "{{.Branch}}"
         dockercfg_service: gcr-dockercfg
 
+      - name: nvidia-install
+        type: push
+        service: nvidia-install
+        registry: https://gcr.io
+        image_name: gcr.io/new-indico/nvidia-install
+        image_tag: "{{.Branch}}"
+        dockercfg_service: gcr-dockercfg
+
       - name: numpy
         type: push
         service: numpy
