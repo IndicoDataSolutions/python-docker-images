@@ -9,7 +9,7 @@ CHECK_INTERVAL_SECONDS="30"
 EXEC=(nsenter -t 1 -m -u -i -n -p --)
 TOKEN=$(cat /var/run/secrets/kubernetes.io/serviceaccount/token)
 POD_NAME=$(uname -n)
-NAMESPACE="default"
+NAMESPACE="nvidia-install"
 NODE_NAME=$(curl -k -H "Authorization: Bearer $TOKEN" -H "Content-Type: application/json" \
   -X GET https://kubernetes/api/v1/namespaces/$NAMESPACE/pods/$POD_NAME | jq -r ". | {node: .spec.nodeName} | .node")
 
