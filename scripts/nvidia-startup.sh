@@ -11,7 +11,7 @@ TOKEN=$(cat /var/run/secrets/kubernetes.io/serviceaccount/token)
 POD_NAME=$(uname -n)
 NAMESPACE="nvidia-install"
 NODE_NAME=$(curl -k -H "Authorization: Bearer $TOKEN" -H "Content-Type: application/json" \
-  -X GET https://kubernetes/api/v1/namespaces/$NAMESPACE/pods/$POD_NAME | jq -r ". | {node: .spec.nodeName} | .node")
+  -X GET https://kubernetes.default/api/v1/namespaces/$NAMESPACE/pods/$POD_NAME | jq -r ". | {node: .spec.nodeName} | .node")
 
 remove_node_taints() {
     while true; do
