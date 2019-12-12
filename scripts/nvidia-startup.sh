@@ -26,7 +26,7 @@ remove_node_taints() {
                 -H "Authorization: Bearer $TOKEN" \
                 -H 'Accept: application/json' \
                 -H 'Content-Type: application/json-patch+json' \
-                https://kubernetes/api/v1/nodes/$NODE_NAME
+                https://kubernetes.default/api/v1/nodes/$NODE_NAME
             break
         fi
 
@@ -41,7 +41,7 @@ add_nvidia_node_taint() {
       -H "Authorization: Bearer $TOKEN" \
       -H 'Accept: application/json' \
       -H 'Content-Type: application/json-patch+json' \
-      https://kubernetes/api/v1/nodes/$NODE_NAME
+      https://kubernetes.default/api/v1/nodes/$NODE_NAME
 }
 
 
