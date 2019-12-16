@@ -7,7 +7,7 @@ We do this by using a multistage build in which the initial images are ones we h
 ## To Build:
 
 ```bash
-docker build -t indicoio/<name> -f Dockerfile/<name> .
+docker build -t gcr.io/new-indico/<name> -f Dockerfile/<name> .
 ```
 
 ## To Use:
