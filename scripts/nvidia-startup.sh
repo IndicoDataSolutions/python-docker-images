@@ -4,12 +4,12 @@ set -o errexit
 set -o nounset
 set -o pipefail
 
+NAMESPACE=${1:-nvidia-install}
 CHECKPOINT_PATH="${CHECKPOINT_PATH:-/tmp/startup-script.kubernetes.io_$(md5sum <<<"${STARTUP_SCRIPT}" | cut -c-32)}"
 CHECK_INTERVAL_SECONDS="30"
 EXEC=(nsenter -t 1 -m -u -i -n -p --)
 TOKEN=$(cat /var/run/secrets/kubernetes.io/serviceaccount/token)
 POD_NAME=$(uname -n)
-NAMESPACE="nvidia-install"
 NODE_NAME=$(curl -k -H "Authorization: Bearer $TOKEN" -H "Content-Type: application/json" \
   -X GET https://kubernetes.default/api/v1/namespaces/$NAMESPACE/pods/$POD_NAME | jq -r ". | {node: .spec.nodeName} | .node")
 
