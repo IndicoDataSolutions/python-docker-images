@@ -38,6 +38,13 @@ numpy:
     dockerfile: Dockerfile/numpy
   dockercfg_service: gcr-dockercfg
 
+numpy-1-13-0:
+  build:
+    dockerfile: Dockerfile/numpy
+    args:
+      NUMPY_VERSION: 1.13.0
+  dockercfg_service: gcr-dockercfg
+
 flower:
   build:
     dockerfile: Dockerfile/flower

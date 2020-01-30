@@ -111,6 +111,14 @@
         image_tag: "{{.Branch}}"
         dockercfg_service: gcr-dockercfg
 
+      - name: numpy-1-13-0
+        type: push
+        service: numpy-1-13-0
+        registry: https://gcr.io
+        image_name: gcr.io/new-indico/numpy
+        image_tag: "1.13.0"
+        dockercfg_service: gcr-dockercfg
+
       - name: pandas
         type: push
         service: pandas
