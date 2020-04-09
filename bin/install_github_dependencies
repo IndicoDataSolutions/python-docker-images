@@ -20,6 +20,7 @@ fi
 if [ -z $extras ]; then
     pip3 install --find-links=/root/.cache/pip/wheels -e .
 else
+    extras=$(echo $extras | sed 's/[][]//g')
     pip3 install --find-links=/root/.cache/pip/wheels -e .[$extras]
 fi
 
