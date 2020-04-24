@@ -38,6 +38,11 @@ numpy:
     dockerfile: Dockerfile/numpy
   dockercfg_service: gcr-dockercfg
 
+numpy-ubuntu:
+  build:
+    dockerfile: Dockerfile/numpy-ubuntu
+  dockercfg_service: gcr-dockercfg
+
 flower:
   build:
     dockerfile: Dockerfile/flower
@@ -56,6 +61,11 @@ indicoio:
 pandas:
   build:
     dockerfile: Dockerfile/pandas
+  dockercfg_service: gcr-dockercfg
+
+pandas-ubuntu:
+  build:
+    dockerfile: Dockerfile/pandas-ubuntu
   dockercfg_service: gcr-dockercfg
 
 aws:
@@ -107,7 +117,6 @@ indicoio-ubuntu-gpu:
     dockerfile: Dockerfile/ubuntu_gpu
   encrypted_dockercfg_path: dockercfg.encrypted
 
-
 ubuntu:
   build:
     dockerfile: Dockerfile/ubuntu
@@ -131,7 +140,6 @@ indicoio-ubuntu-18-04:
     args:
       UBUNTU_VERSION: 18.04
   encrypted_dockercfg_path: dockercfg.encrypted
-
 
 atmosphere:
   build:
