@@ -1,4 +1,4 @@
-FROM gcr.io/new-indico/numpy as numpy-base
+FROM gcr.io/new-indico/numpy_ubuntu as numpy-base
 
 FROM gcr.io/new-indico/ubuntu:18.04
 
