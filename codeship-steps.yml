@@ -3,197 +3,212 @@
   steps:
     - type: parallel
       steps:
-      - name: alpine-3-7-3
-        type: push
-        service: alpine-3-7-3
-        registry: https://gcr.io
-        image_name: gcr.io/new-indico/alpine
-        image_tag: "3.7.3"
-        dockercfg_service: gcr-dockercfg
+        - name: alpine-3-7-3
+          type: push
+          service: alpine-3-7-3
+          registry: https://gcr.io
+          image_name: gcr.io/new-indico/alpine
+          image_tag: "3.7.3"
+          dockercfg_service: gcr-dockercfg
 
-      - name: alpine-3-9-3
-        type: push
-        service: alpine-3-9-3
-        registry: https://gcr.io
-        image_name: gcr.io/new-indico/alpine
-        image_tag: "3.9.3"
-        dockercfg_service: gcr-dockercfg
+        - name: alpine-3-9-3
+          type: push
+          service: alpine-3-9-3
+          registry: https://gcr.io
+          image_name: gcr.io/new-indico/alpine
+          image_tag: "3.9.3"
+          dockercfg_service: gcr-dockercfg
 
-      - name: indicoio-alpine-3-7-3
-        type: push
-        service: indicoio-alpine-3-7-3
-        image_name: indicoio/alpine
-        image_tag: "3.7.3"
+        - name: indicoio-alpine-3-7-3
+          type: push
+          service: indicoio-alpine-3-7-3
+          image_name: indicoio/alpine
+          image_tag: "3.7.3"
 
-      - name: indicoio-alpine-3-9-3
-        type: push
-        service: indicoio-alpine-3-9-3
-        image_name: indicoio/alpine
-        image_tag: "3.9.3"
+        - name: indicoio-alpine-3-9-3
+          type: push
+          service: indicoio-alpine-3-9-3
+          image_name: indicoio/alpine
+          image_tag: "3.9.3"
 
-      - name: ubuntu-18-04
-        type: push
-        service: ubuntu-18-04
-        registry: https://gcr.io
-        image_name: gcr.io/new-indico/ubuntu
-        image_tag: 18.04
-        dockercfg_service: gcr-dockercfg
+        - name: ubuntu-18-04
+          type: push
+          service: ubuntu-18-04
+          registry: https://gcr.io
+          image_name: gcr.io/new-indico/ubuntu
+          image_tag: 18.04
+          dockercfg_service: gcr-dockercfg
 
-      - name: tensorflow-ubuntu-1.13.2
-        type: push
-        service: tensorflow-ubuntu
-        registry: https://gcr.io
-        image_name: gcr.io/new-indico/tensorflow_ubuntu
-        image_tag: 1.13.2
-        dockercfg_service: gcr-dockercfg
+        - name: tensorflow-ubuntu-1.13.2
+          type: push
+          service: tensorflow-ubuntu
+          registry: https://gcr.io
+          image_name: gcr.io/new-indico/tensorflow_ubuntu
+          image_tag: 1.13.2
+          dockercfg_service: gcr-dockercfg
 
-      - name: tensorflow-ubuntu-1.14.0
-        type: push
-        service: tensorflow-ubuntu
-        registry: https://gcr.io
-        image_name: gcr.io/new-indico/tensorflow_ubuntu
-        image_tag: 1.14.0
-        dockercfg_service: gcr-dockercfg
+        - name: tensorflow-ubuntu-1.14.0
+          type: push
+          service: tensorflow-ubuntu
+          registry: https://gcr.io
+          image_name: gcr.io/new-indico/tensorflow_ubuntu
+          image_tag: 1.14.0
+          dockercfg_service: gcr-dockercfg
 
-      - name: ubuntu-18-04-indicoio
-        type: push
-        service: indicoio-ubuntu-18-04
-        image_name: indicoio/ubuntu
-        image_tag: 18.04
-        encrypted_dockercfg_path: dockercfg.encrypted
+        - name: ubuntu-18-04-indicoio
+          type: push
+          service: indicoio-ubuntu-18-04
+          image_name: indicoio/ubuntu
+          image_tag: 18.04
+          encrypted_dockercfg_path: dockercfg.encrypted
 
-      - name: ubuntu
-        type: push
-        service: ubuntu
-        registry: https://gcr.io
-        image_name: gcr.io/new-indico/ubuntu
-        image_tag: "{{.Branch}}"
-        dockercfg_service: gcr-dockercfg
+        - name: ubuntu
+          type: push
+          service: ubuntu
+          registry: https://gcr.io
+          image_name: gcr.io/new-indico/ubuntu
+          image_tag: "{{.Branch}}"
+          dockercfg_service: gcr-dockercfg
 
-      - name: indicoio-ubuntu
-        type: push
-        service: indicoio-ubuntu
-        image_name: indicoio/ubuntu
-        image_tag: "{{.Branch}}"
-        encrypted_dockercfg_path: dockercfg.encrypted
+        - name: indicoio-ubuntu
+          type: push
+          service: indicoio-ubuntu
+          image_name: indicoio/ubuntu
+          image_tag: "{{.Branch}}"
+          encrypted_dockercfg_path: dockercfg.encrypted
 
     - type: parallel
       steps:
-      - name: indicoio
-        type: push
-        service: indicoio
-        registry: https://gcr.io
-        image_name: gcr.io/new-indico/indicoio
-        image_tag: "{{.Branch}}"
-        dockercfg_service: gcr-dockercfg
+        - name: indicoio
+          type: push
+          service: indicoio
+          registry: https://gcr.io
+          image_name: gcr.io/new-indico/indicoio
+          image_tag: "{{.Branch}}"
+          dockercfg_service: gcr-dockercfg
 
-      - name: flower
-        type: push
-        service: flower
-        registry: https://gcr.io
-        image_name: gcr.io/new-indico/flower
-        image_tag: "{{.Branch}}"
-        dockercfg_service: gcr-dockercfg
+        - name: flower
+          type: push
+          service: flower
+          registry: https://gcr.io
+          image_name: gcr.io/new-indico/flower
+          image_tag: "{{.Branch}}"
+          dockercfg_service: gcr-dockercfg
 
-      - name: nvidia-install
-        type: push
-        service: nvidia-install
-        registry: https://gcr.io
-        image_name: gcr.io/new-indico/nvidia-install
-        image_tag: "{{.Branch}}"
-        dockercfg_service: gcr-dockercfg
+        - name: nvidia-install
+          type: push
+          service: nvidia-install
+          registry: https://gcr.io
+          image_name: gcr.io/new-indico/nvidia-install
+          image_tag: "{{.Branch}}"
+          dockercfg_service: gcr-dockercfg
 
-      - name: numpy
-        type: push
-        service: numpy
-        registry: https://gcr.io
-        image_name: gcr.io/new-indico/numpy
-        image_tag: "{{.Branch}}"
-        dockercfg_service: gcr-dockercfg
+        - name: numpy
+          type: push
+          service: numpy
+          registry: https://gcr.io
+          image_name: gcr.io/new-indico/numpy
+          image_tag: "{{.Branch}}"
+          dockercfg_service: gcr-dockercfg
 
-      - name: pandas
-        type: push
-        service: pandas
-        registry: https://gcr.io
-        image_name: gcr.io/new-indico/pandas
-        image_tag: "{{.Branch}}"
-        dockercfg_service: gcr-dockercfg
+        - name: pandas
+          type: push
+          service: pandas
+          registry: https://gcr.io
+          image_name: gcr.io/new-indico/pandas
+          image_tag: "{{.Branch}}"
+          dockercfg_service: gcr-dockercfg
 
-      - name: sklearn
-        type: push
-        service: sklearn
-        registry: https://gcr.io
-        image_name: gcr.io/new-indico/sklearn
-        image_tag: "0.19.2"
-        dockercfg_service: gcr-dockercfg
+        - name: sklearn
+          type: push
+          service: sklearn
+          registry: https://gcr.io
+          image_name: gcr.io/new-indico/sklearn
+          image_tag: "0.19.2"
+          dockercfg_service: gcr-dockercfg
 
-      - name: sklearn-0-20-2
-        type: push
-        service: sklearn-0-20-2
-        registry: https://gcr.io
-        image_name: gcr.io/new-indico/sklearn
-        image_tag: "0.20.2"
-        dockercfg_service: gcr-dockercfg
+        - name: sklearn-0-20-2
+          type: push
+          service: sklearn-0-20-2
+          registry: https://gcr.io
+          image_name: gcr.io/new-indico/sklearn
+          image_tag: "0.20.2"
+          dockercfg_service: gcr-dockercfg
 
-      - name: sklearn-0-21-3
-        type: push
-        service: sklearn-0-21-3
-        registry: https://gcr.io
-        image_name: gcr.io/new-indico/sklearn
-        image_tag: "0.21.3"
-        dockercfg_service: gcr-dockercfg
+        - name: sklearn-0-21-3
+          type: push
+          service: sklearn-0-21-3
+          registry: https://gcr.io
+          image_name: gcr.io/new-indico/sklearn
+          image_tag: "0.21.3"
+          dockercfg_service: gcr-dockercfg
 
-      - name: scipy
-        type: push
-        service: scipy
-        registry: https://gcr.io
-        image_name: gcr.io/new-indico/scipy
-        image_tag: "{{.Branch}}"
-        dockercfg_service: gcr-dockercfg
+        - name: scipy
+          type: push
+          service: scipy
+          registry: https://gcr.io
+          image_name: gcr.io/new-indico/scipy
+          image_tag: "{{.Branch}}"
+          dockercfg_service: gcr-dockercfg
 
-      - name: tsne
-        type: push
-        service: tsne
-        registry: https://gcr.io
-        image_name: gcr.io/new-indico/tsne
-        image_tag: "{{.Branch}}"
-        dockercfg_service: gcr-dockercfg
+        - name: tsne
+          type: push
+          service: tsne
+          registry: https://gcr.io
+          image_name: gcr.io/new-indico/tsne
+          image_tag: "{{.Branch}}"
+          dockercfg_service: gcr-dockercfg
 
-      - name: ubuntu_gpu
-        type: push
-        service: ubuntu-gpu
-        registry: https://gcr.io
-        image_name: gcr.io/new-indico/ubuntu_gpu
-        image_tag: "{{.Branch}}"
-        dockercfg_service: gcr-dockercfg
+        - name: ubuntu_gpu
+          type: push
+          service: ubuntu-gpu
+          registry: https://gcr.io
+          image_name: gcr.io/new-indico/ubuntu_gpu
+          image_tag: "{{.Branch}}"
+          dockercfg_service: gcr-dockercfg
 
-      - name: indicoio_ubuntu_gpu
-        type: push
-        service: indicoio-ubuntu-gpu
-        image_name: indicoio/ubuntu_gpu
-        image_tag: "{{.Branch}}"
+        - name: indicoio_ubuntu_gpu
+          type: push
+          service: indicoio-ubuntu-gpu
+          image_name: indicoio/ubuntu_gpu
+          image_tag: "{{.Branch}}"
 
+        - name: atmosphere
+          type: push
+          service: atmosphere
+          registry: https://gcr.io
+          image_name: gcr.io/new-indico/atmosphere
+          image_tag: "{{.Branch}}"
+          dockercfg_service: gcr-dockercfg
 
-      - name: atmosphere
-        type: push
-        service: atmosphere
-        registry: https://gcr.io
-        image_name: gcr.io/new-indico/atmosphere
-        image_tag: "{{.Branch}}"
-        dockercfg_service: gcr-dockercfg
+        - name: aws
+          type: push
+          service: aws
+          registry: https://gcr.io
+          image_name: gcr.io/new-indico/aws
+          image_tag: "{{.Branch}}"
+          dockercfg_service: gcr-dockercfg
 
-      - name: aws
-        type: push
-        service: aws
-        registry: https://gcr.io
-        image_name: gcr.io/new-indico/aws
-        image_tag: "{{.Branch}}"
-        dockercfg_service: gcr-dockercfg
+        - name: nginx-uploader
+          type: push
+          service: nginx-uploader
+          registry: https://gcr.io
+          image_name: gcr.io/new-indico/nginx-uploader
+          image_tag: "1.17.5"
+          dockercfg_service: gcr-dockercfg
 
-      - name: nginx-uploader
-        type: push
-        service: nginx-uploader
-        registry: https://gcr.io
-        image_name: gcr.io/new-indico/nginx-uploader
-        image_tag: "1.17.5"
-        dockercfg_service: gcr-dockercfg
+        - name: numpy-ubuntu
+          type: push
+          service: numpy-ubuntu
+          registry: https://gcr.io
+          image_name: gcr.io/new-indico/numpy_ubuntu
+          image_tag: "{{.Branch}}"
+          dockercfg_service: gcr-dockercfg
+
+        - name: pandas-ubuntu
+          type: push
+          service: pandas-ubuntu
+          registry: https://gcr.io
+          image_name: gcr.io/new-indico/pandas_ubuntu
+          image_tag: "{{.Branch}}"
+          dockercfg_service: gcr-dockercfg
