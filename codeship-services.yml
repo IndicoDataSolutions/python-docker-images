@@ -49,7 +49,7 @@ sklearn-ubuntu:
 
 tensorflow-ubuntu:
   build:
-    dockerfile: Dockerfile/tensorflow_ubuntu
+    dockerfile: Dockerfile/tensorflow-ubuntu
   dockercfg_service: gcr-dockercfg
 
 tsne-ubuntu:

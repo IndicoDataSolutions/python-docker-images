@@ -1,16 +1,16 @@
 - type: parallel
   dockercfg_service: gcr-dockercfg
   steps:
-      tag: "^(test)$"
+    - tag: "^(test)$"
       type: serial
       steps:
-      - name: test_base
-        service: test_base
-        command: exit
+        - name: test_base
+          service: test_base
+          command: exit
 
-      - name: test_libs
-        service: test_libs
-        command: exit
+        - name: test_libs
+          service: test_libs
+          command: exit
 
     - type: parallel
       tag: "^(latest)$"
@@ -35,7 +35,7 @@
           type: push
           service: tensorflow-ubuntu
           registry: https://gcr.io
-          image_name: gcr.io/new-indico/tensorflow_ubuntu
+          image_name: gcr.io/new-indico/tensorflow-ubuntu
           image_tag: 1.14.0
           dockercfg_service: gcr-dockercfg
 
@@ -54,7 +54,7 @@
           service: scipy-ubuntu
           registry: https://gcr.io
           image_name: gcr.io/new-indico/scipy
-          image_tag: "{{.Branch}}"
+          image_tag: "1.1.0"
           dockercfg_service: gcr-dockercfg
 
         - name: tsne-ubuntu
@@ -77,16 +77,16 @@
           type: push
           service: numpy-ubuntu
           registry: https://gcr.io
-          image_name: gcr.io/new-indico/numpy_ubuntu
-          image_tag: "{{.Branch}}"
+          image_name: gcr.io/new-indico/numpy-ubuntu
+          image_tag: "1.15.4"
           dockercfg_service: gcr-dockercfg
 
         - name: pandas-ubuntu
           type: push
           service: pandas-ubuntu
           registry: https://gcr.io
-          image_name: gcr.io/new-indico/pandas_ubuntu
-          image_tag: "{{.Branch}}"
+          image_name: gcr.io/new-indico/pandas-ubuntu
+          image_tag: "0.23.4"
           dockercfg_service: gcr-dockercfg
 
         - name: aws

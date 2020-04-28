@@ -1,6 +1,13 @@
-FROM gcr.io/new-indico/numpy-ubuntu as numpy-base
-FROM gcr.io/new-indico/scipy-ubuntu as scipy-base
-FROM gcr.io/new-indico/pandas-ubuntu as pandas-base
+ARG NUMPY_VERSION=1.15.4
+ARG SCIPY_VERSION=1.1.0
+ARG PANDAS_VERSION=0.23.4
+ARG IMBA_LEARN_VERSION=0.3.3
+ARG SKLEARN_VERSION=0.19.2
+ARG SCIKIT_IMAGE_VERSION=0.14.0
+
+FROM gcr.io/new-indico/numpy-ubuntu:${NUMPY_VERSION} as numpy-base
+FROM gcr.io/new-indico/scipy-ubuntu:${SCIPY_VERSION} as scipy-base
+FROM gcr.io/new-indico/pandas-ubuntu:${PANDAS_VERSION} as pandas-base
 
 FROM gcr.io/new-indico/ubuntu:18.04
 
@@ -8,12 +15,11 @@ COPY --from=numpy-base /root/.cache/pip/wheels/ /root/.cache/pip/wheels
 COPY --from=pandas-base /root/.cache/pip/wheels/ /root/.cache/pip/wheels
 COPY --from=scipy-base /root/.cache/pip/wheels/ /root/.cache/pip/wheels
 
-ARG SKLEARN_VERSION=0.19.2
 
 RUN apt-get install -y --no-install-recommends --no-install-suggests zlib1g-dev libjpeg-dev libpng-dev libfreetype-dev libopenblas-dev && \
     pip3 install Cython && \
-    pip3 install numpy==1.15.4 && \
-    pip3 install scipy==1.1.0 && \
-    pip3 install pandas==0.23.4 && \
-    pip3 install scikit-learn==${SKLEARN_VERSION} imbalanced-learn==0.3.3 && \
-    pip3 install scikit-image==0.14.0
+    pip3 install numpy==${NUMPY_VERSION} && \
+    pip3 install scipy==${SCIPY_VERSION} && \
+    pip3 install pandas==${PANDAS_VERSION} && \
+    pip3 install scikit-learn==${SKLEARN_VERSION} imbalanced-learn==${IMBA_LEARN_VERSION} && \
+    pip3 install scikit-image==${SCIKIT_IMAGE_VERSION}
