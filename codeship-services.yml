@@ -1,4 +1,5 @@
 alpine-3-9-3:
+  default_cache_branch: "latest"
   build:
     dockerfile: Dockerfile/alpine
     args:
@@ -6,16 +7,19 @@ alpine-3-9-3:
   dockercfg_service: gcr-dockercfg
 
 aws:
+  default_cache_branch: "latest"
   build:
     dockerfile: Dockerfile/aws
   dockercfg_service: gcr-dockercfg
 
 flower:
+  default_cache_branch: "latest"
   build:
     dockerfile: Dockerfile/flower
   dockercfg_service: gcr-dockercfg
 
 nginx-uploader:
+  default_cache_branch: "latest"
   build:
     dockerfile: Dockerfile/nginx-uploader
     args:
@@ -23,48 +27,57 @@ nginx-uploader:
   dockercfg_service: gcr-dockercfg
 
 numpy-ubuntu:
+  default_cache_branch: "latest"
   build:
     dockerfile: Dockerfile/numpy-ubuntu
   dockercfg_service: gcr-dockercfg
 
 nvidia-install:
+  default_cache_branch: "latest"
   build:
     dockerfile: Dockerfile/nvidia-install
   dockercfg_service: gcr-dockercfg
 
 pandas-ubuntu:
+  default_cache_branch: "latest"
   build:
     dockerfile: Dockerfile/pandas-ubuntu
   dockercfg_service: gcr-dockercfg
 
 scipy-ubuntu:
+  default_cache_branch: "latest"
   build:
     dockerfile: Dockerfile/scipy-ubuntu
   dockercfg_service: gcr-dockercfg
 
 sklearn-ubuntu:
+  default_cache_branch: "latest"
   build:
     dockerfile: Dockerfile/sklearn-ubuntu
   dockercfg_service: gcr-dockercfg
 
 tensorflow-ubuntu:
+  default_cache_branch: "latest"
   build:
     dockerfile: Dockerfile/tensorflow-ubuntu
   dockercfg_service: gcr-dockercfg
 
 tsne-ubuntu:
+  default_cache_branch: "latest"
   build:
-    dockerfile: Dockerfile/tsne-ubuntu
+    dockerfile: Dockerfile/tsne
   dockercfg_service: gcr-dockercfg
 
 ubuntu-18-04:
+  default_cache_branch: "latest"
   build:
-    dockerfile: Dockerfile/ubuntu_18_04
+    dockerfile: Dockerfile/ubuntu
     args:
       UBUNTU_VERSION: 18.04
   dockercfg_service: gcr-dockercfg
 
 ubuntu-gpu:
+  default_cache_branch: "latest"
   build:
     dockerfile: Dockerfile/ubuntu_gpu
   dockercfg_service: gcr-dockercfg
@@ -74,7 +87,14 @@ gcr-dockercfg:
   add_docker: true
   encrypted_env_file: codeship.env
 
-test_base:
+test-1:
+  image: busybox
+  depends_on:
+    - tensorflow-ubuntu
+    - alpine-3-9-3
+    - ubuntu-18-04
+
+test-2:
   image: busybox
   depends_on:
     - aws
@@ -82,15 +102,16 @@ test_base:
     - nginx-uploader
     - numpy-ubuntu
     - nvidia-install
-    - pandas-ubuntu
-    - scipy-ubuntu
-    - sklearn-ubuntu
     - ubuntu-gpu
-    - tsne-ubuntu
 
-test_libs:
+test-3:
   image: busybox
   depends_on:
-    - tensorflow-ubuntu
-    - alpine-3-9-3
-    - ubuntu-18-04
+    - pandas-ubuntu
+    - scipy-ubuntu
+
+test-4:
+  image: busybox
+  depends_on:
+    - sklearn-ubuntu
+    - tsne-ubuntu

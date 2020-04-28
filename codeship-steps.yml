@@ -1,16 +1,24 @@
-- type: parallel
+- type: serial
   dockercfg_service: gcr-dockercfg
   steps:
     - tag: "^(test)$"
       type: serial
       steps:
-        - name: test_base
-          service: test_base
-          command: exit
+        - name: test-1
+          service: test-1
+          command: echo "Success"
 
-        - name: test_libs
-          service: test_libs
-          command: exit
+        - name: test-2
+          service: test-2
+          command: echo "Success"
+
+        - name: test-3
+          service: test-3
+          command: echo "Success"
+
+        - name: test-4
+          service: test-4
+          command: echo "Success"
 
     - type: parallel
       tag: "^(latest)$"
@@ -95,7 +103,7 @@
           type: push
           service: scipy-ubuntu
           registry: https://gcr.io
-          image_name: gcr.io/new-indico/scipy
+          image_name: gcr.io/new-indico/scipy-ubuntu
           image_tag: "1.1.0"
           dockercfg_service: gcr-dockercfg
 
@@ -113,7 +121,7 @@
           type: push
           service: tsne-ubuntu
           registry: https://gcr.io
-          image_name: gcr.io/new-indico/tsne
+          image_name: gcr.io/new-indico/tsne-ubuntu
           image_tag: "{{.Branch}}"
           dockercfg_service: gcr-dockercfg
 
@@ -121,6 +129,6 @@
           type: push
           service: sklearn-ubuntu
           registry: https://gcr.io
-          image_name: gcr.io/new-indico/sklearn
+          image_name: gcr.io/new-indico/sklearn-ubuntu
           image_tag: "0.19.2"
           dockercfg_service: gcr-dockercfg
