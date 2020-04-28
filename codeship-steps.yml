@@ -41,30 +41,6 @@
 
     - type: parallel
       steps:
-        - name: sklearn-ubuntu
-          type: push
-          service: sklearn-ubuntu
-          registry: https://gcr.io
-          image_name: gcr.io/new-indico/sklearn
-          image_tag: "0.19.2"
-          dockercfg_service: gcr-dockercfg
-
-        - name: scipy-ubuntu
-          type: push
-          service: scipy-ubuntu
-          registry: https://gcr.io
-          image_name: gcr.io/new-indico/scipy
-          image_tag: "1.1.0"
-          dockercfg_service: gcr-dockercfg
-
-        - name: tsne-ubuntu
-          type: push
-          service: tsne-ubuntu
-          registry: https://gcr.io
-          image_name: gcr.io/new-indico/tsne
-          image_tag: "{{.Branch}}"
-          dockercfg_service: gcr-dockercfg
-
         - name: ubuntu_gpu
           type: push
           service: ubuntu-gpu
@@ -79,14 +55,6 @@
           registry: https://gcr.io
           image_name: gcr.io/new-indico/numpy-ubuntu
           image_tag: "1.15.4"
-          dockercfg_service: gcr-dockercfg
-
-        - name: pandas-ubuntu
-          type: push
-          service: pandas-ubuntu
-          registry: https://gcr.io
-          image_name: gcr.io/new-indico/pandas-ubuntu
-          image_tag: "0.23.4"
           dockercfg_service: gcr-dockercfg
 
         - name: aws
@@ -119,4 +87,40 @@
           registry: https://gcr.io
           image_name: gcr.io/new-indico/nvidia-install
           image_tag: "{{.Branch}}"
+          dockercfg_service: gcr-dockercfg
+
+    - type: parallel
+      steps:
+        - name: scipy-ubuntu
+          type: push
+          service: scipy-ubuntu
+          registry: https://gcr.io
+          image_name: gcr.io/new-indico/scipy
+          image_tag: "1.1.0"
+          dockercfg_service: gcr-dockercfg
+
+        - name: pandas-ubuntu
+          type: push
+          service: pandas-ubuntu
+          registry: https://gcr.io
+          image_name: gcr.io/new-indico/pandas-ubuntu
+          image_tag: "0.23.4"
+          dockercfg_service: gcr-dockercfg
+
+    - type: parallel
+      steps:
+        - name: tsne-ubuntu
+          type: push
+          service: tsne-ubuntu
+          registry: https://gcr.io
+          image_name: gcr.io/new-indico/tsne
+          image_tag: "{{.Branch}}"
+          dockercfg_service: gcr-dockercfg
+
+        - name: sklearn-ubuntu
+          type: push
+          service: sklearn-ubuntu
+          registry: https://gcr.io
+          image_name: gcr.io/new-indico/sklearn
+          image_tag: "0.19.2"
           dockercfg_service: gcr-dockercfg

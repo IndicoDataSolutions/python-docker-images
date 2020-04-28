@@ -1,8 +1,0 @@
-FROM gcr.io/new-indico/tsne as tsne-base
-FROM gcr.io/new-indico/ubuntu:18.04
-
-COPY --from=tsne-base /root/.cache/pip/wheels/ /root/.cache/pip/wheels
-
-RUN pip3 install numpy==1.15.4 && \
-    pip3 install git+https://github.com/IndicoDataSolutions/tsne.git && \
-    rm -r /root/.cache # After installing python packages to reduce image size.
