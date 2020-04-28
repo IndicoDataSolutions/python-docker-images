@@ -1,10 +1,3 @@
-alpine-3-7-3:
-  build:
-    dockerfile: Dockerfile/alpine
-    args:
-      ALPINE_VERSION: 3.7.3
-  dockercfg_service: gcr-dockercfg
-
 alpine-3-9-3:
   build:
     dockerfile: Dockerfile/alpine
@@ -12,19 +5,15 @@ alpine-3-9-3:
       ALPINE_VERSION: 3.9.3
   dockercfg_service: gcr-dockercfg
 
-indicoio-alpine-3-7-3:
+aws:
   build:
-    dockerfile: Dockerfile/alpine
-    args:
-      ALPINE_VERSION: 3.7.3
-  encrypted_dockercfg_path: dockercfg.encrypted
+    dockerfile: Dockerfile/aws
+  dockercfg_service: gcr-dockercfg
 
-indicoio-alpine-3-9-3:
+flower:
   build:
-    dockerfile: Dockerfile/alpine
-    args:
-      ALPINE_VERSION: 3.9.3
-  encrypted_dockercfg_path: dockercfg.encrypted
+    dockerfile: Dockerfile/flower
+  dockercfg_service: gcr-dockercfg
 
 nginx-uploader:
   build:
@@ -33,19 +22,9 @@ nginx-uploader:
       nginx_version: 1.17.5
   dockercfg_service: gcr-dockercfg
 
-numpy:
-  build:
-    dockerfile: Dockerfile/numpy
-  dockercfg_service: gcr-dockercfg
-
 numpy-ubuntu:
   build:
     dockerfile: Dockerfile/numpy-ubuntu
-  dockercfg_service: gcr-dockercfg
-
-flower:
-  build:
-    dockerfile: Dockerfile/flower
   dockercfg_service: gcr-dockercfg
 
 nvidia-install:
@@ -53,58 +32,19 @@ nvidia-install:
     dockerfile: Dockerfile/nvidia-install
   dockercfg_service: gcr-dockercfg
 
-indicoio:
-  build:
-    dockerfile: Dockerfile/indicoio
-  dockercfg_service: gcr-dockercfg
-
-pandas:
-  build:
-    dockerfile: Dockerfile/pandas
-  dockercfg_service: gcr-dockercfg
-
 pandas-ubuntu:
   build:
     dockerfile: Dockerfile/pandas-ubuntu
   dockercfg_service: gcr-dockercfg
 
-aws:
+scipy-ubuntu:
   build:
-    dockerfile: Dockerfile/aws
+    dockerfile: Dockerfile/scipy-ubuntu
   dockercfg_service: gcr-dockercfg
 
-sklearn:
+sklearn-ubuntu:
   build:
-    dockerfile: Dockerfile/sklearn
-  dockercfg_service: gcr-dockercfg
-
-sklearn-0-20-2:
-  build:
-    dockerfile: Dockerfile/sklearn
-    args:
-      SKLEARN_VERSION: 0.20.2
-  dockercfg_service: gcr-dockercfg
-
-sklearn-0-21-3:
-  build:
-    dockerfile: Dockerfile/sklearn
-    args:
-      SKLEARN_VERSION: 0.21.3
-  dockercfg_service: gcr-dockercfg
-
-scipy:
-  build:
-    dockerfile: Dockerfile/scipy
-  dockercfg_service: gcr-dockercfg
-
-tsne:
-  build:
-    dockerfile: Dockerfile/tsne
-  dockercfg_service: gcr-dockercfg
-
-ubuntu-gpu:
-  build:
-    dockerfile: Dockerfile/ubuntu_gpu
+    dockerfile: Dockerfile/sklearn-ubuntu
   dockercfg_service: gcr-dockercfg
 
 tensorflow-ubuntu:
@@ -112,20 +52,10 @@ tensorflow-ubuntu:
     dockerfile: Dockerfile/tensorflow_ubuntu
   dockercfg_service: gcr-dockercfg
 
-indicoio-ubuntu-gpu:
+tsne-ubuntu:
   build:
-    dockerfile: Dockerfile/ubuntu_gpu
-  encrypted_dockercfg_path: dockercfg.encrypted
-
-ubuntu:
-  build:
-    dockerfile: Dockerfile/ubuntu
+    dockerfile: Dockerfile/tsne-ubuntu
   dockercfg_service: gcr-dockercfg
-
-indicoio-ubuntu:
-  build:
-    dockerfile: Dockerfile/ubuntu
-  encrypted_dockercfg_path: dockercfg.encrypted
 
 ubuntu-18-04:
   build:
@@ -134,19 +64,33 @@ ubuntu-18-04:
       UBUNTU_VERSION: 18.04
   dockercfg_service: gcr-dockercfg
 
-indicoio-ubuntu-18-04:
+ubuntu-gpu:
   build:
-    dockerfile: Dockerfile/ubuntu_18_04
-    args:
-      UBUNTU_VERSION: 18.04
-  encrypted_dockercfg_path: dockercfg.encrypted
-
-atmosphere:
-  build:
-    dockerfile: Dockerfile/atmosphere
+    dockerfile: Dockerfile/ubuntu_gpu
   dockercfg_service: gcr-dockercfg
 
 gcr-dockercfg:
   image: indicoio/gcr-dockercfg
   add_docker: true
   encrypted_env_file: codeship.env
+
+test_base:
+  image: busybox
+  depends_on:
+    - aws
+    - flower
+    - nginx-uploader
+    - numpy-ubuntu
+    - nvidia-install
+    - pandas-ubuntu
+    - scipy-ubuntu
+    - sklearn-ubuntu
+    - ubuntu-gpu
+    - tsne-ubuntu
+
+test_libs:
+  image: busybox
+  depends_on:
+    - tensorflow-ubuntu
+    - alpine-3-9-3
+    - ubuntu-18-04

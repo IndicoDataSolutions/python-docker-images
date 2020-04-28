@@ -42,14 +42,14 @@ FROM nginx:${nginx_version}
 ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt update && \
-apt-get install --no-install-recommends --no-install-suggests -y \
-ca-certificates \
-libcurl4-openssl-dev \
-libyajl-dev \
-lua5.1-dev \
-luajit \
-libluajit-5.1-2 \
-libxml2
+    apt-get install --no-install-recommends --no-install-suggests -y \
+    ca-certificates \
+    libcurl4-openssl-dev \
+    libyajl-dev \
+    lua5.1-dev \
+    luajit \
+    libluajit-5.1-2 \
+    libxml2
 
 RUN apt clean && rm -rf /var/lib/apt/lists/*
 

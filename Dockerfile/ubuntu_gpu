@@ -1,6 +1,6 @@
 ARG UBUNTU_VERSION=18.04
 FROM tensorflow/tensorflow:1.14.0-gpu-py3 as tensorflow-image
-FROM indicoio/ubuntu:${UBUNTU_VERSION}
+FROM gcr.io/new-indico/ubuntu:${UBUNTU_VERSION}
 
 LABEL author="Chris Lee"
 LABEL email="chris@indico.io"
@@ -19,5 +19,5 @@ ENV PATH=/usr/local/nvidia/bin:/usr/local/cuda/bin:${PATH} LD_LIBRARY_PATH=/usr/
 COPY --from=tensorflow-image /usr/local/cuda-10.0/ /usr/local/cuda-10.0
 COPY --from=tensorflow-image /usr/lib/x86_64-linux-gnu/ /usr/local/x86_64-linux-gnu
 
-RUN apt-get update && apt-get install -y --no-install-recommends gnupg2 curl ca-certificates wget && \
+RUN apt-get update && apt-get install -y --no-install-recommends --no-install-suggests gnupg2 curl ca-certificates wget && \
     ln -s cuda-10.0 /usr/local/cuda
