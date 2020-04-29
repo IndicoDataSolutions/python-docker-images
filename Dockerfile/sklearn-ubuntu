@@ -21,7 +21,7 @@ ARG NUMPY_VERSION
 ARG SCIPY_VERSION
 ARG PANDAS_VERSION
 
-RUN apt-get install -y --no-install-recommends --no-install-suggests zlib1g-dev libjpeg-dev libpng-dev libfreetype-dev libopenblas-dev && \
+RUN apt-get install -y --no-install-recommends --no-install-suggests zlib1g-dev libjpeg-dev libpng-dev libfreetype6-dev libopenblas-dev && \
     pip3 install Cython && \
     pip3 install numpy==${NUMPY_VERSION} && \
     pip3 install scipy==${SCIPY_VERSION} && \
