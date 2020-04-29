@@ -1,11 +1,17 @@
-FROM gcr.io/new-indico/numpy as numpy-base
-FROM gcr.io/new-indico/scipy as scipy-base
-FROM gcr.io/new-indico/alpine:3.7.3
+ARG NUMPY_VERSION=1.15.4
+ARG SCIPY_VERSION=1.1.0
+
+FROM gcr.io/new-indico/numpy-ubuntu:${NUMPY_VERSION} as numpy-base
+FROM gcr.io/new-indico/scipy-ubuntu:${SCIPY_VERSION} as scipy-base
+FROM gcr.io/new-indico/ubuntu:18.04
 
 COPY --from=numpy-base /root/.cache/pip/wheels/ /root/.cache/pip/wheels
 COPY --from=scipy-base /root/.cache/pip/wheels/ /root/.cache/pip/wheels
 
-RUN apk update && \
-    apk add --no-cache openblas openblas-dev && \
-    pip3 install cython numpy==1.15.4 && \
-    pip3 wheel scipy==1.1.0 git+https://github.com/IndicoDataSolutions/tsne.git
+ARG NUMPY_VERSION
+ARG SCIPY_VERSION
+
+RUN apt-get update && \
+    apt-get install --no-install-recommends --no-install-suggests -y libopenblas-dev && \
+    pip3 install cython numpy==${NUMPY_VERSION} && \
+    pip3 wheel scipy==${SCIPY_VERSION} git+https://github.com/IndicoDataSolutions/tsne.git

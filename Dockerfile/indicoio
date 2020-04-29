@@ -1,9 +1,0 @@
-FROM gcr.io/new-indico/numpy as numpy-base
-FROM gcr.io/new-indico/alpine:3.7.3
-
-COPY --from=numpy-base /root/.cache/pip/wheels/ /root/.cache/pip/wheels
-
-RUN apk update && \
-    apk add --no-cache libjpeg jpeg-dev zlib-dev && \
-    pip3 install cython && \
-    pip3 install git+https://github.com/IndicoDataSolutions/IndicoIo-python.git

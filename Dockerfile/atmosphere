@@ -1,7 +1,0 @@
-FROM gcr.io/new-indico/alpine:3.7.3
-
-RUN apk update && \
-    apk add --no-cache \
-        postgresql-dev \
-        postgresql-client && \
-    pip3 install cython

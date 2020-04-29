@@ -1,4 +1,4 @@
-FROM gcr.io/new-indico/alpine:3.7.3
+FROM gcr.io/new-indico/alpine:3.9.3
 
 EXPOSE 5555
 
