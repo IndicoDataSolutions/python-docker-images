@@ -49,6 +49,14 @@
 
     - type: parallel
       steps:
+        - name: atmosphere
+          type: push
+          service: atmosphere
+          registry: https://gcr.io
+          image_name: gcr.io/new-indico/atmosphere-ubuntu
+          image_tag: "{{.Branch}}"
+          dockercfg_service: gcr-dockercfg
+
         - name: ubuntu_gpu
           type: push
           service: ubuntu-gpu

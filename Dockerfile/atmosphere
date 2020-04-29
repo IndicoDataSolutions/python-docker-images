@@ -1,0 +1,3 @@
+FROM gcr.io/new-indico/ubuntu:18.04
+
+RUN apt-get install -y --no-install-suggests --no-install-recommends postgresql-client libpq-dev
