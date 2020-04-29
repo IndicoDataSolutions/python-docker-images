@@ -1,9 +1,9 @@
 ARG NUMPY_VERSION=1.15.4
-FROM gcr.io/new-indico/numpy:${NUMPY_VERSION} as numpy-base
+FROM gcr.io/new-indico/numpy-ubuntu:${NUMPY_VERSION} as numpy-base
 FROM gcr.io/new-indico/ubuntu:18.04
 
 COPY --from=numpy-base /root/.cache/pip/wheels/ /root/.cache/pip/wheels
-
+ARG NUMPY_VERSION
 RUN apt-get update && \
     apt-get install -y --no-install-recommends --no-install-suggests libopenblas-dev && \
     pip3 install cython numpy==${NUMPY_VERSION} && \

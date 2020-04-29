@@ -5,6 +5,8 @@ FROM gcr.io/new-indico/ubuntu:18.04
 
 COPY --from=numpy-base /root/.cache/pip/wheels/ /root/.cache/pip/wheels
 
+ARG NUMPY_VERSION
+
 RUN pip3 install cython && \
     pip3 install numpy==${NUMPY_VERSION} && \
     pip3 install pandas==0.23.4
