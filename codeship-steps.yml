@@ -1,27 +1,27 @@
 - type: serial
-  dockercfg_service: gcr-dockercfg
+  tag: "test"
   steps:
-    - tag: "^(test)$"
-      type: serial
-      steps:
-        - name: test-1
-          service: test-1
-          command: echo "Success"
+    - name: test-1
+      service: test-1
+      command: echo "Success"
 
-        - name: test-2
-          service: test-2
-          command: echo "Success"
+    - name: test-2
+      service: test-2
+      command: echo "Success"
 
-        - name: test-3
-          service: test-3
-          command: echo "Success"
+    - name: test-3
+      service: test-3
+      command: echo "Success"
 
-        - name: test-4
-          service: test-4
-          command: echo "Success"
-
+    - name: test-4
+      service: test-4
+      command: echo "Success"
+- type: serial
+  dockercfg_service: gcr-dockercfg
+  tag: "^(latest)$"
+  name: push-images
+  steps:
     - type: parallel
-      tag: "^(latest)$"
       steps:
         - name: alpine-3-9-3
           type: push
