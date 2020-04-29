@@ -6,6 +6,12 @@ alpine-3-9-3:
       ALPINE_VERSION: 3.9.3
   dockercfg_service: gcr-dockercfg
 
+atmosphere:
+  default_cache_branch: "latest"
+  build:
+    dockerfile: Dockerfile/atmosphere
+  dockercfg_service: gcr-dockercfg
+
 aws:
   default_cache_branch: "latest"
   build:
