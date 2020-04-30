@@ -1,2 +1,2 @@
 #! /bin/bash
-pytest --tb=line -svk -ra ${1-""}
+pytest --tb=line -ra -svk ${1-""}
