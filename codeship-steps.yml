@@ -73,6 +73,14 @@
           image_tag: "1.15.4"
           dockercfg_service: gcr-dockercfg
 
+        - name: numpy-ubuntu-1.18.4
+          type: push
+          service: numpy-ubuntu-1.18.4
+          registry: https://gcr.io
+          image_name: gcr.io/new-indico/numpy-ubuntu
+          image_tag: "1.18.4"
+          dockercfg_service: gcr-dockercfg
+
         - name: aws
           type: push
           service: aws

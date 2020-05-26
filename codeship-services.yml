@@ -38,6 +38,14 @@ numpy-ubuntu:
     dockerfile: Dockerfile/numpy-ubuntu
   dockercfg_service: gcr-dockercfg
 
+numpy-ubuntu-1.18.4:
+  default_cache_branch: "latest"
+  build:
+    args:
+      NUMPY_VERSION: 1.18.4
+    dockerfile: Dockerfile/numpy-ubuntu
+  dockercfg_service: gcr-dockercfg
+
 nvidia-install:
   default_cache_branch: "latest"
   build:
