@@ -94,7 +94,7 @@
           service: nginx-uploader
           registry: https://gcr.io
           image_name: gcr.io/new-indico/nginx-uploader
-          image_tag: "1.17.5"
+          image_tag: "{{.CommitID}}"
           dockercfg_service: gcr-dockercfg
 
         - name: flower
