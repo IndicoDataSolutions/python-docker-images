@@ -32,7 +32,7 @@ RUN export NGINX_RAW_VERSION=$(echo $NGINX_VERSION | sed 's/-.*//g') \
         cd ..; \
         configure_args="${configure_args} --add-dynamic-module=./${dirname}"; \
     done; unset IFS \
-    && eval ./configure ${configure_args} \
+    && eval ./configure ${configure_args} --with-threads \
     && make modules \
     && mkdir /modules \
     && cp $(pwd)/objs/*.so /modules
