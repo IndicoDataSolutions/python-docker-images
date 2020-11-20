@@ -12,6 +12,8 @@ ARG GITHUB_ACCESS_TOKEN
 ARG INCLUDE_LOCAL_FILES="false"
 ENV INCLUDE_LOCAL_FILES=$INCLUDE_LOCAL_FILES
 
+WORKDIR /
+
 RUN npm install -g yarn
 RUN git clone https://${GITHUB_ACCESS_TOKEN}@github.com/IndicoDataSolutions/stratosphere.git && \
     cd stratosphere && \
