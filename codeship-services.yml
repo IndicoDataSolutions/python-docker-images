@@ -12,6 +12,13 @@ atmosphere:
     dockerfile: Dockerfile/atmosphere
   dockercfg_service: gcr-dockercfg
 
+stratosphere-dependencies:
+  default_cache_branch: "latest"
+  build:
+    dockerfile: Dockerfile/stratosphere-dependencies
+    encrypted_args_file: build_args.encrypted
+  dockercfg_service: gcr-dockercfg
+
 aws:
   default_cache_branch: "latest"
   build:
