@@ -25,6 +25,12 @@ aws:
     dockerfile: Dockerfile/aws
   dockercfg_service: gcr-dockercfg
 
+faust-deps:
+  default_cache_branch: "latest"
+  build:
+    dockerfile: Dockerfile/faust-deps
+  dockercfg_service: gcr-dockercfg
+
 flower:
   default_cache_branch: "latest"
   build:

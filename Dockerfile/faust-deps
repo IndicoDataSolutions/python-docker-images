@@ -1,0 +1,20 @@
+FROM gcr.io/new-indico/ubuntu:18.04
+
+RUN apt-get update -y --fix-missing \
+    && apt-get install -y \
+    build-essential \
+    libgflags-dev \
+    libsnappy-dev \
+    zlib1g-dev \
+    libbz2-dev \
+    liblz4-dev \
+    librocksdb-dev \
+    libffi-dev \
+    httpie \ 
+    kafkacat \
+    librdkafka-dev \
+    libyajl-dev
+
+ARG ROCKSDB_VERSION=0.7.0
+
+RUN pip3 install python-rocksdb==${ROCKSDB_VERSION}

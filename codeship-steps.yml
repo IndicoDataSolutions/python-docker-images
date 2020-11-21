@@ -105,6 +105,14 @@
           image_tag: "{{.CommitID}}"
           dockercfg_service: gcr-dockercfg
 
+        - name: faust-deps
+          type: push
+          service: faust-deps
+          registry: https://gcr.io
+          image_name: gcr.io/new-indico/faust-deps
+          image_tag: "{{.Branch}}"
+          dockercfg_service: gcr-dockercfg
+
         - name: flower
           type: push
           service: flower
