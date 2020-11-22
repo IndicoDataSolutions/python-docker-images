@@ -16,5 +16,10 @@ RUN apt-get update -y --fix-missing \
     libyajl-dev
 
 ARG ROCKSDB_VERSION=0.7.0
+ARG FASTAVRO_VERSION
+ARG FAUST_STREAMING_VERSION=0.2.1
+ARG CONFLUENT_KAFKA_CLIENT_VERSION=1.4.0
 
-RUN pip3 install python-rocksdb==${ROCKSDB_VERSION}
+RUN pip3 install python-rocksdb==${ROCKSDB_VERSION} && \
+    pip3 install faust-streaming[rocksdb,fast]==${FAUST_STREAMING_VERSION} && \
+    pip3 install confluent-kafka==1.4.0==${CONFLUENT_KAFKA_CLIENT_VERSION}
