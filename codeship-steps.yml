@@ -57,16 +57,8 @@
     #       image_tag: "{{.Branch}}"
     #       dockercfg_service: gcr-dockercfg
 
-    - type: parallel
-      steps:
-      - name: connect
-        type: push
-        service: connect
-        registry: https://gcr.io
-        image_name: gcr.io/new-indico/connect
-        image_tag: "strimzi-0.20.0-kafka-2.5.0-indico-v2"
-        dockercfg_service: gcr-dockercfg
-
+    # - type: parallel
+    #   steps:
         # - name: stratosphere-dependencies
         #   type: push
         #   service: stratosphere-dependencies
@@ -131,15 +123,15 @@
         #   image_tag: "{{.Branch}}"
         #   dockercfg_service: gcr-dockercfg
 
-    # - type: parallel
-    #   steps:
-    #   - name: faust-deps
-    #     type: push
-    #     service: faust-deps
-    #     registry: https://gcr.io
-    #     image_name: gcr.io/new-indico/faust-deps
-    #     image_tag: "{{.Branch}}"
-    #     dockercfg_service: gcr-dockercfg
+    - type: parallel
+      steps:
+      - name: faust-deps
+        type: push
+        service: faust-deps
+        registry: https://gcr.io
+        image_name: gcr.io/new-indico/faust-deps
+        image_tag: "{{.Branch}}"
+        dockercfg_service: gcr-dockercfg
   
     #     - name: scipy-ubuntu
     #       type: push
