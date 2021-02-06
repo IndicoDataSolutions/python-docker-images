@@ -1,6 +1,11 @@
 FROM gcr.io/new-indico/ubuntu:18.04
+FROM gcr.io/new-indico/rocksdb:v6.15.5
 
-RUN apt-get update -y --fix-missing \
+ENV LD_LIBRARY_PATH=/usr/local/lib PORTABLE=1
+ENV LC_ALL=C.UTF-8
+ENV LANG=C.UTF-8
+
+RUN apt-get update -y --fix-missing --no-install-recommends \
     && apt-get install -y \
     build-essential \
     libgflags-dev \
@@ -15,13 +20,13 @@ RUN apt-get update -y --fix-missing \
     librdkafka-dev \
     libyajl-dev
 
-ARG ROCKSDB_VERSION=0.1.0
+ARG PYTHON_ROCKSDB_VERSION=0.1.0
 ARG FAUST_STREAMING_VERSION=0.4.6
 ARG CONFLUENT_KAFKA_CLIENT_VERSION=1.5.0
 ARG FASTAVRO_VERSION=1.0.0
 
 
-RUN pip3 install faust-streaming-rocksdb==${ROCKSDB_VERSION} && \
-    pip3 install faust-streaming[rocksdb,fast,uvloop]==${FAUST_STREAMING_VERSION} && \
+RUN pip3 install faust-streaming-rocksdb==${ROCKSDB_VERSION} && \ 
+    pip3 install faust-streaming[fast,uvloop]==${FAUST_STREAMING_VERSION} && \
     pip3 install confluent-kafka==${CONFLUENT_KAFKA_CLIENT_VERSION} && \
     pip3 install fastavro==${FASTAVRO_VERSION}

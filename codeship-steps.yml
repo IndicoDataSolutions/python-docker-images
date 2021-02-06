@@ -49,6 +49,13 @@
 
     # - type: parallel
     #   steps:
+    #       - name: rocksdb
+    #         type: push
+    #         service: rocksdb
+    #         registry: https://gcr.io
+    #         image_name: gcr.io/new-indico/rocksdb
+    #         image_tag: v6.15.5
+    #         dockercfg_service: gcr-dockercfg
     #     - name: atmosphere
     #       type: push
     #       service: atmosphere
