@@ -1,32 +1,29 @@
+FROM gcr.io/new-indico/rocksdb:v6.15.5 as rocksdb
 FROM gcr.io/new-indico/ubuntu:18.04
-FROM gcr.io/new-indico/rocksdb:v6.15.5
 
 ENV LD_LIBRARY_PATH=/usr/local/lib PORTABLE=1
 ENV LC_ALL=C.UTF-8
 ENV LANG=C.UTF-8
 
+COPY --from=rocksdb /usr/local/lib/ /usr/local/lib/
+COPY --from=rocksdb /usr/local/include/ /usr/local/include/
+COPY --from=rocksdb /root/.cache/pip/wheels/ /root/.cache/pip/wheels/
+
 RUN apt-get update -y --fix-missing --no-install-recommends \
     && apt-get install -y \
     build-essential \
-    libgflags-dev \
-    libsnappy-dev \
-    zlib1g-dev \
-    libbz2-dev \
-    liblz4-dev \
-    librocksdb-dev \
-    libffi-dev \
     httpie \ 
     kafkacat \
     librdkafka-dev \
-    libyajl-dev
+    libyajl-dev \
+    libffi-dev
 
-ARG PYTHON_ROCKSDB_VERSION=0.1.0
 ARG FAUST_STREAMING_VERSION=0.4.6
 ARG CONFLUENT_KAFKA_CLIENT_VERSION=1.5.0
 ARG FASTAVRO_VERSION=1.0.0
+ARG UVLOOP_VERSION=0.14.0
 
-
-RUN pip3 install faust-streaming-rocksdb==${ROCKSDB_VERSION} && \ 
-    pip3 install faust-streaming[fast,uvloop]==${FAUST_STREAMING_VERSION} && \
+RUN pip3 install faust-streaming[fast]==${FAUST_STREAMING_VERSION} && \
+    pip3 install uvloop==${UVLOOP_VERSION} && \
     pip3 install confluent-kafka==${CONFLUENT_KAFKA_CLIENT_VERSION} && \
     pip3 install fastavro==${FASTAVRO_VERSION}

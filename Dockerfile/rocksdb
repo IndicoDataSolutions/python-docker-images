@@ -16,3 +16,7 @@ RUN git clone -b ${ROCKSDB_VERSION} --depth 1 https://github.com/facebook/rocksd
 
 WORKDIR /tmp/rocksdb
 RUN make shared_lib && make install-shared INSTALL_PATH=/usr
+
+
+RUN pip3 install python-rocksdb==0.7.0 && \ 
+    pip3 install faust-streaming-rocksdb==0.8.0
