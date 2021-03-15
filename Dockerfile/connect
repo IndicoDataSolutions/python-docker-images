@@ -1,0 +1,9 @@
+FROM confluentinc/cp-kafka-connect:5.5.0 as cp
+FROM debezium/connect:1.3 as debezium
+FROM strimzi/kafka:0.20.0-kafka-2.5.0
+USER root:root
+COPY --from=cp /usr/share/java/kafka-connect-storage-common /opt/kafka/plugins/kafka-connect-storage-common
+COPY --from=cp /usr/share/java/confluent-common /opt/kafka/plugins/confluent-common
+COPY --from=cp /usr/share/java/kafka-connect-jdbc /opt/kafka/plugins/kafka-connect-jdbc
+COPY --from=debezium /kafka/connect/debezium-connector-postgres /opt/kafka/plugins/debezium-connector-postgres
+RUN cd /opt/kafka/plugins && for plugin in debezium-connector-postgres kafka-connect-jdbc; do cd $plugin; ln -s ../confluent-common; ln -s ../kafka-connect-storage-common; cd ..; done
