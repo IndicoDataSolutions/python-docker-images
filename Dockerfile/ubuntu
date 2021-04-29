@@ -8,6 +8,7 @@ RUN mkdir -p /root/.cache/pip/wheels && \
     apt-get install --no-install-recommends --no-install-suggests -y build-essential software-properties-common locales python3.7 python3.7-dev python3-pip git wget curl vim && \
     locale-gen en_US.UTF-8 && \
     ln -sf $(which python3.7) $(which python3) && \
+    pip3 install --upgrade "pip>=19.3" && \
     pip3 install setuptools wheel
 
 ENV LANG='en_US.UTF-8' LANGUAGE='en_US:en' LC_ALL='en_US.UTF-8' PYTHONIOENCODING='utf-8'
