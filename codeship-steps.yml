@@ -63,14 +63,6 @@
           image_tag: "{{.Branch}}"
           dockercfg_service: gcr-dockercfg
 
-        - name: stratosphere-dependencies
-          type: push
-          service: stratosphere-dependencies
-          registry: https://gcr.io
-          image_name: gcr.io/new-indico/stratosphere-dependencies
-          image_tag: "{{.Branch}}"
-          dockercfg_service: gcr-dockercfg
-
         - name: ubuntu_gpu
           type: push
           service: ubuntu-gpu
