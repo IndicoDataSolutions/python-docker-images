@@ -361,7 +361,7 @@
         if [ "$ANCHORE_FAIL_ON_POLICY" == "true" ] ; then anchore-cli evaluate check gcr.io/new-indico/tsne-ubuntu:latest  ; fi'
       encrypted_env_file: env.encrypted
 
-    - name: tsne-ubuntu-anchorestep
+    - name: sklearn-ubuntu-anchorestep
       service: anchorescan
       command: sh -c 'echo "Adding image gcr.io/new-indico/sklearn-ubuntu:0.19.2 to Anchore engine" && 
         anchore-cli image add gcr.io/new-indico/sklearn-ubuntu:0.19.2 &&
