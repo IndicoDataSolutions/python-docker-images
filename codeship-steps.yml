@@ -176,198 +176,90 @@
   steps:
     - name: alpine-3-9-3-anchorestep
       service: anchorescan
-      command: sh -c 'echo "Adding image gcr.io/new-indico/alpine:3.9.3 to Anchore engine" && 
-        anchore-cli image add gcr.io/new-indico/alpine:3.9.3 &&
-        echo "Waiting for image analysis to complete" &&
-        anchore-cli image wait gcr.io/new-indico/alpine:3.9.3 &&
-        echo "Analysis complete" &&
-        anchore-cli image vuln gcr.io/new-indico/alpine:3.9.3 all | grep -v Low | grep -v Negligible | grep -v Medium &&
-        if [ "$ANCHORE_FAIL_ON_POLICY" == "true" ] ; then anchore-cli evaluate check gcr.io/new-indico/alpine:3.9.3  ; fi'
+      command: sh -c 'sh scan-images.sh alpine-3-9-3-anchorestep gcr.io/new-indico/alpine:3.9.3'
       encrypted_env_file: env.encrypted
 
     - name: ubuntu-18-04-anchorestep
       service: anchorescan
-      command: sh -c 'echo "Adding image gcr.io/new-indico/ubuntu:18.04 to Anchore engine" && 
-        anchore-cli image add gcr.io/new-indico/ubuntu:18.04 &&
-        echo "Waiting for image analysis to complete" &&
-        anchore-cli image wait gcr.io/new-indico/ubuntu:18.04 &&
-        echo "Analysis complete" &&
-        anchore-cli image vuln gcr.io/new-indico/ubuntu:18.04 all | grep -v Low | grep -v Negligible | grep -v Medium &&
-        if [ "$ANCHORE_FAIL_ON_POLICY" == "true" ] ; then anchore-cli evaluate check gcr.io/new-indico/ubuntu:18.04  ; fi'
+      command: sh -c 'sh scan-images.sh ubuntu-18-04-anchorestep gcr.io/new-indico/ubuntu:18.04'
       encrypted_env_file: env.encrypted
     
     - name: tensorflow-ubuntu-1.14.0-anchorestep
       service: anchorescan
-      command: sh -c 'echo "Adding image gcr.io/new-indico/tensorflow-ubuntu:1.14.0 to Anchore engine" && 
-        anchore-cli image add gcr.io/new-indico/tensorflow-ubuntu:1.14.0 &&
-        echo "Waiting for image analysis to complete" &&
-        anchore-cli image wait gcr.io/new-indico/tensorflow-ubuntu:1.14.0 &&
-        echo "Analysis complete" &&
-        anchore-cli image vuln gcr.io/new-indico/tensorflow-ubuntu:1.14.0 all | grep -v Low | grep -v Negligible | grep -v Medium &&
-        if [ "$ANCHORE_FAIL_ON_POLICY" == "true" ] ; then anchore-cli evaluate check gcr.io/new-indico/tensorflow-ubuntu:1.14.0  ; fi'
+      command: sh -c 'sh scan-images.sh tensorflow-ubuntu-1.14.0-anchorestep gcr.io/new-indico/tensorflow-ubuntu:1.14.0'
       encrypted_env_file: env.encrypted
 
     - name: rocksdb-anchorestep
       service: anchorescan
-      command: sh -c 'echo "Adding image gcr.io/new-indico/rocksdb:v6.15.5 to Anchore engine" && 
-        anchore-cli image add gcr.io/new-indico/rocksdb:v6.15.5 &&
-        echo "Waiting for image analysis to complete" &&
-        anchore-cli image wait gcr.io/new-indico/rocksdb:v6.15.5 &&
-        echo "Analysis complete" &&
-        anchore-cli image vuln gcr.io/new-indico/rocksdb:v6.15.5 all | grep -v Low | grep -v Negligible | grep -v Medium &&
-        if [ "$ANCHORE_FAIL_ON_POLICY" == "true" ] ; then anchore-cli evaluate check gcr.io/new-indico/rocksdb:v6.15.5  ; fi'
+      command: sh -c 'sh scan-images.sh rocksdb-anchorestep gcr.io/new-indico/rocksdb:v6.15.5'
       encrypted_env_file: env.encrypted
 
     - name: atmosphere-anchorestep
       service: anchorescan
-      command: sh -c 'echo "Adding image gcr.io/new-indico/atmosphere-ubuntu:latest to Anchore engine" && 
-        anchore-cli image add gcr.io/new-indico/atmosphere-ubuntu:latest &&
-        echo "Waiting for image analysis to complete" &&
-        anchore-cli image wait gcr.io/new-indico/atmosphere-ubuntu:latest &&
-        echo "Analysis complete" &&
-        anchore-cli image vuln gcr.io/new-indico/atmosphere-ubuntu:latest all | grep -v Low | grep -v Negligible | grep -v Medium &&
-        if [ "$ANCHORE_FAIL_ON_POLICY" == "true" ] ; then anchore-cli evaluate check gcr.io/new-indico/atmosphere-ubuntu:latest ; fi'
+      command: sh -c 'sh scan-images.sh atmosphere-anchorestep gcr.io/new-indico/atmosphere-ubuntu:latest'
       encrypted_env_file: env.encrypted
 
     - name: ubuntu_gpu-anchorestep
       service: anchorescan
-      command: sh -c 'echo "Adding image gcr.io/new-indico/ubuntu_gpu:latest to Anchore engine" && 
-        anchore-cli image add gcr.io/new-indico/ubuntu_gpu:latest &&
-        echo "Waiting for image analysis to complete" &&
-        anchore-cli image wait gcr.io/new-indico/ubuntu_gpu:latest &&
-        echo "Analysis complete" &&
-        anchore-cli image vuln gcr.io/new-indico/ubuntu_gpu:latest all | grep -v Low | grep -v Negligible | grep -v Medium &&
-        if [ "$ANCHORE_FAIL_ON_POLICY" == "true" ] ; then anchore-cli evaluate check gcr.io/new-indico/ubuntu_gpu:latest  ; fi'
+      command: sh -c 'sh scan-images.sh ubuntu_gpu-anchorestep gcr.io/new-indico/ubuntu_gpu:latest'
       encrypted_env_file: env.encrypted
 
     - name: numpy-ubuntu-anchorestep
       service: anchorescan
-      command: sh -c 'echo "Adding image gcr.io/new-indico/numpy-ubuntu:1.15.4 to Anchore engine" && 
-        anchore-cli image add gcr.io/new-indico/numpy-ubuntu:1.15.4 &&
-        echo "Waiting for image analysis to complete" &&
-        anchore-cli image wait gcr.io/new-indico/numpy-ubuntu:1.15.4 &&
-        echo "Analysis complete" &&
-        anchore-cli image vuln gcr.io/new-indico/numpy-ubuntu:1.15.4 all | grep -v Low | grep -v Negligible | grep -v Medium &&
-        if [ "$ANCHORE_FAIL_ON_POLICY" == "true" ] ; then anchore-cli evaluate check gcr.io/new-indico/numpy-ubuntu:1.15.4  ; fi'
+      command: sh -c 'sh scan-images.sh numpy-ubuntu-anchorestep gcr.io/new-indico/numpy-ubuntu:1.15.4'
       encrypted_env_file: env.encrypted
 
     - name: numpy-ubuntu-1.18.4-anchorestep
       service: anchorescan
-      command: sh -c 'echo "Adding image gcr.io/new-indico/numpy-ubuntu:1.18.4 to Anchore engine" && 
-        anchore-cli image add gcr.io/new-indico/numpy-ubuntu:1.18.4 &&
-        echo "Waiting for image analysis to complete" &&
-        anchore-cli image wait gcr.io/new-indico/numpy-ubuntu:1.18.4 &&
-        echo "Analysis complete" &&
-        anchore-cli image vuln gcr.io/new-indico/numpy-ubuntu:1.18.4 all | grep -v Low | grep -v Negligible | grep -v Medium &&
-        if [ "$ANCHORE_FAIL_ON_POLICY" == "true" ] ; then anchore-cli evaluate check gcr.io/new-indico/numpy-ubuntu:1.18.4  ; fi'
+      command: sh -c 'sh scan-images.sh numpy-ubuntu-1.18.4-anchorestep gcr.io/new-indico/numpy-ubuntu:1.18.4'
       encrypted_env_file: env.encrypted
 
     - name: aws-anchorestep
       service: anchorescan
-      command: sh -c 'echo "Adding image gcr.io/new-indico/aws:latest to Anchore engine" && 
-        anchore-cli image add gcr.io/new-indico/aws:latest &&
-        echo "Waiting for image analysis to complete" &&
-        anchore-cli image wait gcr.io/new-indico/aws:latest &&
-        echo "Analysis complete" &&
-        anchore-cli image vuln gcr.io/new-indico/aws:latest all | grep -v Low | grep -v Negligible | grep -v Medium &&
-        if [ "$ANCHORE_FAIL_ON_POLICY" == "true" ] ; then anchore-cli evaluate check gcr.io/new-indico/aws:latest  ; fi'
+      command: sh -c 'sh scan-images.sh aws-anchorestep gcr.io/new-indico/aws:latest'
       encrypted_env_file: env.encrypted
 
     - name: nginx-uploader-anchorestep
       service: anchorescan
-      command: sh -c 'echo "Adding image gcr.io/new-indico/nginx-uploader:latest to Anchore engine" && 
-        anchore-cli image add gcr.io/new-indico/nginx-uploader:latest &&
-        echo "Waiting for image analysis to complete" &&
-        anchore-cli image wait gcr.io/new-indico/nginx-uploader:latest &&
-        echo "Analysis complete" &&
-        anchore-cli image vuln gcr.io/new-indico/nginx-uploader:latest all | grep -v Low | grep -v Negligible | grep -v Medium &&
-        if [ "$ANCHORE_FAIL_ON_POLICY" == "true" ] ; then anchore-cli evaluate check gcr.io/new-indico/nginx-uploader:latest  ; fi'
+      command: sh -c 'sh scan-images.sh nginx-uploader-anchorestep gcr.io/new-indico/nginx-uploader:latest'
       encrypted_env_file: env.encrypted
 
     - name: flower-anchorestep
       service: anchorescan
-      command: sh -c 'echo "Adding image gcr.io/new-indico/flower:latest to Anchore engine" && 
-        anchore-cli image add gcr.io/new-indico/flower:latest &&
-        echo "Waiting for image analysis to complete" &&
-        anchore-cli image wait gcr.io/new-indico/flower:latest &&
-        echo "Analysis complete" &&
-        anchore-cli image vuln gcr.io/new-indico/flower:latest all | grep -v Low | grep -v Negligible | grep -v Medium &&
-        if [ "$ANCHORE_FAIL_ON_POLICY" == "true" ] ; then anchore-cli evaluate check gcr.io/new-indico/flower:latest  ; fi'
+      command: sh -c 'sh scan-images.sh flower-anchorestep gcr.io/new-indico/flower:latest'
       encrypted_env_file: env.encrypted
 
     - name: nvidia-install-anchorestep
       service: anchorescan
-      command: sh -c 'echo "Adding image gcr.io/new-indico/nvidia-install:latest to Anchore engine" && 
-        anchore-cli image add gcr.io/new-indico/nvidia-install:latest &&
-        echo "Waiting for image analysis to complete" &&
-        anchore-cli image wait gcr.io/new-indico/nvidia-install:latest &&
-        echo "Analysis complete" &&
-        anchore-cli image vuln gcr.io/new-indico/nvidia-install:latest all | grep -v Low | grep -v Negligible | grep -v Medium &&
-        if [ "$ANCHORE_FAIL_ON_POLICY" == "true" ] ; then anchore-cli evaluate check gcr.io/new-indico/nvidia-install:latest  ; fi'
+      command: sh -c 'sh scan-images.sh nvidia-install-anchorestep gcr.io/new-indico/nvidia-install:latest'
       encrypted_env_file: env.encrypted
 
     - name: faust-deps-anchorestep
       service: anchorescan
-      command: sh -c 'echo "Adding image gcr.io/new-indico/faust-deps:0.4.6 to Anchore engine" && 
-        anchore-cli image add gcr.io/new-indico/faust-deps:0.4.6 &&
-        echo "Waiting for image analysis to complete" &&
-        anchore-cli image wait gcr.io/new-indico/faust-deps:0.4.6 &&
-        echo "Analysis complete" &&
-        anchore-cli image vuln gcr.io/new-indico/faust-deps:0.4.6 all | grep -v Low | grep -v Negligible | grep -v Medium &&
-        if [ "$ANCHORE_FAIL_ON_POLICY" == "true" ] ; then anchore-cli evaluate check gcr.io/new-indico/faust-deps:0.4.6  ; fi'
+      command: sh -c 'sh scan-images.sh faust-deps-anchorestep gcr.io/new-indico/faust-deps:0.4.6'
       encrypted_env_file: env.encrypted
 
     - name: scipy-ubuntu-anchorestep
       service: anchorescan
-      command: sh -c 'echo "Adding image gcr.io/new-indico/scipy-ubuntu:1.1.0 to Anchore engine" && 
-        anchore-cli image add gcr.io/new-indico/scipy-ubuntu:1.1.0 &&
-        echo "Waiting for image analysis to complete" &&
-        anchore-cli image wait gcr.io/new-indico/scipy-ubuntu:1.1.0 &&
-        echo "Analysis complete" &&
-        anchore-cli image vuln gcr.io/new-indico/scipy-ubuntu:1.1.0 all | grep -v Low | grep -v Negligible | grep -v Medium &&
-        if [ "$ANCHORE_FAIL_ON_POLICY" == "true" ] ; then anchore-cli evaluate check gcr.io/new-indico/scipy-ubuntu:1.1.0  ; fi'
+      command: sh -c 'sh scan-images.sh scipy-ubuntu-anchorestep gcr.io/new-indico/scipy-ubuntu:1.1.0'
       encrypted_env_file: env.encrypted
 
     - name: pandas-ubuntu-anchorestep
       service: anchorescan
-      command: sh -c 'echo "Adding image gcr.io/new-indico/pandas-ubuntu:0.23.4 to Anchore engine" && 
-        anchore-cli image add gcr.io/new-indico/pandas-ubuntu:0.23.4 &&
-        echo "Waiting for image analysis to complete" &&
-        anchore-cli image wait gcr.io/new-indico/pandas-ubuntu:0.23.4 &&
-        echo "Analysis complete" &&
-        anchore-cli image vuln gcr.io/new-indico/pandas-ubuntu:0.23.4 all | grep -v Low | grep -v Negligible | grep -v Medium &&
-        if [ "$ANCHORE_FAIL_ON_POLICY" == "true" ] ; then anchore-cli evaluate check gcr.io/new-indico/pandas-ubuntu:0.23.4  ; fi'
+      command: sh -c 'sh scan-images.sh pandas-ubuntu-anchorestep gcr.io/new-indico/pandas-ubuntu:0.23.4'
       encrypted_env_file: env.encrypted
 
     - name: pandas-ubuntu-1.0.3-anchorestep
       service: anchorescan
-      command: sh -c 'echo "Adding image gcr.io/new-indico/pandas-ubuntu:1.0.3 to Anchore engine" && 
-        anchore-cli image add gcr.io/new-indico/pandas-ubuntu:1.0.3 &&
-        echo "Waiting for image analysis to complete" &&
-        anchore-cli image wait gcr.io/new-indico/pandas-ubuntu:1.0.3 &&
-        echo "Analysis complete" &&
-        anchore-cli image vuln gcr.io/new-indico/pandas-ubuntu:1.0.3 all | grep -v Low | grep -v Negligible | grep -v Medium &&
-        if [ "$ANCHORE_FAIL_ON_POLICY" == "true" ] ; then anchore-cli evaluate check gcr.io/new-indico/pandas-ubuntu:1.0.3  ; fi'
+      command: sh -c 'sh scan-images.sh pandas-ubuntu-1.0.3-anchorestep gcr.io/new-indico/pandas-ubuntu:1.0.3'
       encrypted_env_file: env.encrypted
 
     - name: tsne-ubuntu-anchorestep
       service: anchorescan
-      command: sh -c 'echo "Adding image gcr.io/new-indico/tsne-ubuntu:latest to Anchore engine" && 
-        anchore-cli image add gcr.io/new-indico/tsne-ubuntu:latest &&
-        echo "Waiting for image analysis to complete" &&
-        anchore-cli image wait gcr.io/new-indico/tsne-ubuntu:latest &&
-        echo "Analysis complete" &&
-        anchore-cli image vuln gcr.io/new-indico/tsne-ubuntu:latest all | grep -v Low | grep -v Negligible | grep -v Medium &&
-        if [ "$ANCHORE_FAIL_ON_POLICY" == "true" ] ; then anchore-cli evaluate check gcr.io/new-indico/tsne-ubuntu:latest  ; fi'
+      command: sh -c 'sh scan-images.sh tsne-ubuntu-anchorestep gcr.io/new-indico/tsne-ubuntu:latest'
       encrypted_env_file: env.encrypted
 
     - name: sklearn-ubuntu-anchorestep
       service: anchorescan
-      command: sh -c 'echo "Adding image gcr.io/new-indico/sklearn-ubuntu:0.19.2 to Anchore engine" && 
-        anchore-cli image add gcr.io/new-indico/sklearn-ubuntu:0.19.2 &&
-        echo "Waiting for image analysis to complete" &&
-        anchore-cli image wait gcr.io/new-indico/sklearn-ubuntu:0.19.2 &&
-        echo "Analysis complete" &&
-        anchore-cli image vuln gcr.io/new-indico/sklearn-ubuntu:0.19.2 all | grep -v Low | grep -v Negligible | grep -v Medium &&
-        if [ "$ANCHORE_FAIL_ON_POLICY" == "true" ] ; then anchore-cli evaluate check gcr.io/new-indico/sklearn-ubuntu:0.19.2  ; fi'
+      command: sh -c 'sh scan-images.sh sklearn-ubuntu-anchorestep gcr.io/new-indico/sklearn-ubuntu:0.19.2'
       encrypted_env_file: env.encrypted
