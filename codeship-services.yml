@@ -129,6 +129,11 @@ gcr-dockercfg:
   image: indicoio/gcr-dockercfg
   add_docker: true
   encrypted_env_file: codeship.env
+  
+anchorescan:
+  image: gcr.io/new-indico/indico-anchor-engine-cli:1.0.4
+  dockercfg_service: gcr-dockercfg
+  encrypted_env_file: env.encrypted
 
 test-1:
   image: busybox

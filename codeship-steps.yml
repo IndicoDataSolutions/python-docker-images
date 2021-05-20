@@ -170,3 +170,96 @@
           image_name: gcr.io/new-indico/sklearn-ubuntu
           image_tag: "0.19.2"
           dockercfg_service: gcr-dockercfg
+
+- type: serial
+  name: scan-images
+  steps:
+    - name: alpine-3-9-3-anchorestep
+      service: anchorescan
+      command: sh -c 'sh scan-images.sh alpine-3-9-3-anchorestep gcr.io/new-indico/alpine:3.9.3'
+      encrypted_env_file: env.encrypted
+
+    - name: ubuntu-18-04-anchorestep
+      service: anchorescan
+      command: sh -c 'sh scan-images.sh ubuntu-18-04-anchorestep gcr.io/new-indico/ubuntu:18.04'
+      encrypted_env_file: env.encrypted
+    
+    - name: tensorflow-ubuntu-1.14.0-anchorestep
+      service: anchorescan
+      command: sh -c 'sh scan-images.sh tensorflow-ubuntu-1.14.0-anchorestep gcr.io/new-indico/tensorflow-ubuntu:1.14.0'
+      encrypted_env_file: env.encrypted
+
+    - name: rocksdb-anchorestep
+      service: anchorescan
+      command: sh -c 'sh scan-images.sh rocksdb-anchorestep gcr.io/new-indico/rocksdb:v6.15.5'
+      encrypted_env_file: env.encrypted
+
+    - name: atmosphere-anchorestep
+      service: anchorescan
+      command: sh -c 'sh scan-images.sh atmosphere-anchorestep gcr.io/new-indico/atmosphere-ubuntu:latest'
+      encrypted_env_file: env.encrypted
+
+    - name: ubuntu_gpu-anchorestep
+      service: anchorescan
+      command: sh -c 'sh scan-images.sh ubuntu_gpu-anchorestep gcr.io/new-indico/ubuntu_gpu:latest'
+      encrypted_env_file: env.encrypted
+
+    - name: numpy-ubuntu-anchorestep
+      service: anchorescan
+      command: sh -c 'sh scan-images.sh numpy-ubuntu-anchorestep gcr.io/new-indico/numpy-ubuntu:1.15.4'
+      encrypted_env_file: env.encrypted
+
+    - name: numpy-ubuntu-1.18.4-anchorestep
+      service: anchorescan
+      command: sh -c 'sh scan-images.sh numpy-ubuntu-1.18.4-anchorestep gcr.io/new-indico/numpy-ubuntu:1.18.4'
+      encrypted_env_file: env.encrypted
+
+    - name: aws-anchorestep
+      service: anchorescan
+      command: sh -c 'sh scan-images.sh aws-anchorestep gcr.io/new-indico/aws:latest'
+      encrypted_env_file: env.encrypted
+
+    - name: nginx-uploader-anchorestep
+      service: anchorescan
+      command: sh -c 'sh scan-images.sh nginx-uploader-anchorestep gcr.io/new-indico/nginx-uploader:latest'
+      encrypted_env_file: env.encrypted
+
+    - name: flower-anchorestep
+      service: anchorescan
+      command: sh -c 'sh scan-images.sh flower-anchorestep gcr.io/new-indico/flower:latest'
+      encrypted_env_file: env.encrypted
+
+    - name: nvidia-install-anchorestep
+      service: anchorescan
+      command: sh -c 'sh scan-images.sh nvidia-install-anchorestep gcr.io/new-indico/nvidia-install:latest'
+      encrypted_env_file: env.encrypted
+
+    - name: faust-deps-anchorestep
+      service: anchorescan
+      command: sh -c 'sh scan-images.sh faust-deps-anchorestep gcr.io/new-indico/faust-deps:0.4.6'
+      encrypted_env_file: env.encrypted
+
+    - name: scipy-ubuntu-anchorestep
+      service: anchorescan
+      command: sh -c 'sh scan-images.sh scipy-ubuntu-anchorestep gcr.io/new-indico/scipy-ubuntu:1.1.0'
+      encrypted_env_file: env.encrypted
+
+    - name: pandas-ubuntu-anchorestep
+      service: anchorescan
+      command: sh -c 'sh scan-images.sh pandas-ubuntu-anchorestep gcr.io/new-indico/pandas-ubuntu:0.23.4'
+      encrypted_env_file: env.encrypted
+
+    - name: pandas-ubuntu-1.0.3-anchorestep
+      service: anchorescan
+      command: sh -c 'sh scan-images.sh pandas-ubuntu-1.0.3-anchorestep gcr.io/new-indico/pandas-ubuntu:1.0.3'
+      encrypted_env_file: env.encrypted
+
+    - name: tsne-ubuntu-anchorestep
+      service: anchorescan
+      command: sh -c 'sh scan-images.sh tsne-ubuntu-anchorestep gcr.io/new-indico/tsne-ubuntu:latest'
+      encrypted_env_file: env.encrypted
+
+    - name: sklearn-ubuntu-anchorestep
+      service: anchorescan
+      command: sh -c 'sh scan-images.sh sklearn-ubuntu-anchorestep gcr.io/new-indico/sklearn-ubuntu:0.19.2'
+      encrypted_env_file: env.encrypted
