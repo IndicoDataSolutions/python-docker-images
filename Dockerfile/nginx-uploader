@@ -39,8 +39,10 @@ RUN export NGINX_RAW_VERSION=$(echo $NGINX_VERSION | sed 's/-.*//g') \
 
 # Install opentracing
 RUN apt-get install wget
-RUN cd /modules && wget -O - https://github.com/opentracing-contrib/nginx-opentracing/releases/download/v0.15.0/linux-amd64-nginx-1.19.4-ngx_http_module.so.tgz | tar -zxf - \
-    && wget -O - https://github.com/lightstep/lightstep-tracer-cpp/releases/download/v0.13.0/linux-amd64-liblightstep_tracer_plugin.so.gz | gunzip -c > /modules/liblightstep_tracer_plugin.so
+RUN cd /modules && wget -O - https://github.com/opentracing-contrib/nginx-opentracing/releases/download/v0.11.0/linux-amd64-nginx-1.19.4-ngx_http_module.so.tgz | tar -zxf - \
+    && wget -O - https://github.com/lightstep/lightstep-tracer-cpp/releases/download/v0.9.0/linux-amd64-liblightstep_tracer_plugin.so.gz | gunzip -c > /usr/local/lib/liblightstep_tracer_plugin.so
+
+# was 0.8.1 version
 
 FROM nginx:${nginx_version}
 
@@ -59,6 +61,7 @@ RUN apt update && \
 RUN apt clean && rm -rf /var/lib/apt/lists/*
 
 COPY --from=build /modules/* /usr/lib/nginx/modules/
+COPY --from=build /usr/local/lib/liblightstep_tracer_plugin.so /usr/local/lib/liblightstep_tracer_plugin.so
 COPY --from=build /usr/local/modsecurity/ /usr/local/modsecurity/
 
 RUN rm -f /etc/nginx/modules/all.conf \
