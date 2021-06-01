@@ -5,8 +5,10 @@ package=${1}
 extras=${2}
 commit=${3}
 
+IFS='/'; repo=($package); unset IFS;
+
 cd /
-git clone https://${GITHUB_ACCESS_TOKEN}@github.com/IndicoDataSolutions/${package}.git
+git clone https://${GITHUB_ACCESS_TOKEN}@github.com/IndicoDataSolutions/${repo}.git
 cd ${package}
 
 if [ ! -z $commit ]; then
