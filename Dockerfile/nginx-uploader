@@ -1,4 +1,4 @@
-ARG nginx_version=1.20.1
+ARG nginx_version=1.19.6
 ARG modsecurity_version=v3.0.4
 
 FROM nginx:${nginx_version} as build
