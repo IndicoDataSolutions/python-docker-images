@@ -5,4 +5,4 @@ RUN apk update && \
     vim \
     curl && \
     pip3 install --upgrade pip && \
-    pip3 install boto3==1.9.127 awscli==1.16.137
+    pip3 install boto3==1.17.88 awscli==1.19.88
