@@ -1,4 +1,4 @@
-FROM gcr.io/new-indico/alpine:3.9.3
+FROM gcr.io/new-indico/alpine:vulns
 
 EXPOSE 5555
 
