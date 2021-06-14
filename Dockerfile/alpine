@@ -8,7 +8,7 @@ RUN mkdir -p /root/.cache/pip/wheels && \
         build-base \
         python3-dev \
         python3 \
-        git \
+        git>2.15.4 \
         coreutils \
         bash \
         curl \
