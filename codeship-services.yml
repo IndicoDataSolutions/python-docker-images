@@ -87,6 +87,15 @@ pandas-ubuntu-1.0.3:
       NUMPY_VERSION: 1.18.4
   dockercfg_service: gcr-dockercfg
 
+pandas-ubuntu-1.2.4:
+  default_cache_branch: "latest"
+  build:
+    dockerfile: Dockerfile/pandas-ubuntu
+    args:
+      PANDAS_VERSION: 1.2.4
+      NUMPY_VERSION: 1.20.3
+  dockercfg_service: gcr-dockercfg
+
 rocksdb:
   default_cache_branch: "latest"
   build:
