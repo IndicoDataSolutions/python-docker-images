@@ -153,6 +153,14 @@
           image_tag: "1.2.4"
           dockercfg_service: gcr-dockercfg
 
+        - name: pandas-ubuntu-1.2.4
+          type: push
+          service: pandas-ubuntu-1.2.4
+          registry: https://gcr.io
+          image_name: gcr.io/new-indico/pandas-ubuntu
+          image_tag: "1.2.4"
+          dockercfg_service: gcr-dockercfg
+
     - type: parallel
       steps:
         - name: tsne-ubuntu
