@@ -71,22 +71,6 @@
           image_tag: "{{.Branch}}"
           dockercfg_service: gcr-dockercfg
 
-        - name: numpy-ubuntu
-          type: push
-          service: numpy-ubuntu
-          registry: https://gcr.io
-          image_name: gcr.io/new-indico/numpy-ubuntu
-          image_tag: "1.15.4"
-          dockercfg_service: gcr-dockercfg
-
-        - name: numpy-ubuntu-1.18.4
-          type: push
-          service: numpy-ubuntu-1.18.4
-          registry: https://gcr.io
-          image_name: gcr.io/new-indico/numpy-ubuntu
-          image_tag: "1.18.4"
-          dockercfg_service: gcr-dockercfg
-
         - name: numpy-ubuntu-1.20.3
           type: push
           service: numpy-ubuntu-1.20.3
@@ -204,14 +188,9 @@
       command: sh -c 'sh scan-images.sh ubuntu_gpu-anchorestep gcr.io/new-indico/ubuntu_gpu:latest'
       encrypted_env_file: env.encrypted
 
-    - name: numpy-ubuntu-anchorestep
+    - name: numpy-ubuntu-1.20.3-anchorestep
       service: anchorescan
-      command: sh -c 'sh scan-images.sh numpy-ubuntu-anchorestep gcr.io/new-indico/numpy-ubuntu:1.15.4'
-      encrypted_env_file: env.encrypted
-
-    - name: numpy-ubuntu-1.18.4-anchorestep
-      service: anchorescan
-      command: sh -c 'sh scan-images.sh numpy-ubuntu-1.18.4-anchorestep gcr.io/new-indico/numpy-ubuntu:1.18.4'
+      command: sh -c 'sh scan-images.sh numpy-ubuntu-1.20.3-anchorestep gcr.io/new-indico/numpy-ubuntu:1.20.3'
       encrypted_env_file: env.encrypted
 
     - name: aws-anchorestep
