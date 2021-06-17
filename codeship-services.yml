@@ -44,20 +44,6 @@ nginx-uploader:
       nginx_version: 1.17.5
   dockercfg_service: gcr-dockercfg
 
-numpy-ubuntu:
-  default_cache_branch: "latest"
-  build:
-    dockerfile: Dockerfile/numpy-ubuntu
-  dockercfg_service: gcr-dockercfg
-
-numpy-ubuntu-1.18.4:
-  default_cache_branch: "latest"
-  build:
-    args:
-      NUMPY_VERSION: 1.18.4
-    dockerfile: Dockerfile/numpy-ubuntu
-  dockercfg_service: gcr-dockercfg
-
 numpy-ubuntu-1.20.3:
   default_cache_branch: "latest"
   build:
@@ -155,8 +141,7 @@ test-2:
     - aws
     - flower
     - nginx-uploader
-    - numpy-ubuntu
-    - numpy-ubuntu-1.18.4
+    - numpy-ubuntu-1.20.3
     - nvidia-install
     - ubuntu-gpu
 
