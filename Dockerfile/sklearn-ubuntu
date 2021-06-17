@@ -1,6 +1,6 @@
-ARG NUMPY_VERSION=1.15.4
+ARG NUMPY_VERSION=1.20.3
 ARG SCIPY_VERSION=1.1.0
-ARG PANDAS_VERSION=0.23.4
+ARG PANDAS_VERSION=1.2.4
 
 
 FROM gcr.io/new-indico/numpy-ubuntu:${NUMPY_VERSION} as numpy-base
@@ -14,14 +14,15 @@ COPY --from=pandas-base /root/.cache/pip/wheels/ /root/.cache/pip/wheels
 COPY --from=scipy-base /root/.cache/pip/wheels/ /root/.cache/pip/wheels
 
 ARG IMBA_LEARN_VERSION=0.3.3
-ARG SKLEARN_VERSION=0.19.2
-ARG SCIKIT_IMAGE_VERSION=0.14.0
+ARG SKLEARN_VERSION=0.24.2
+ARG SCIKIT_IMAGE_VERSION=0.14.2
 
 ARG NUMPY_VERSION
 ARG SCIPY_VERSION
 ARG PANDAS_VERSION
 
 RUN apt-get install -y --no-install-recommends --no-install-suggests zlib1g-dev libjpeg-dev libpng-dev libfreetype6-dev libopenblas-dev && \
+    pip3 install --upgrade pip && \
     pip3 install Cython && \
     pip3 install numpy==${NUMPY_VERSION} && \
     pip3 install scipy==${SCIPY_VERSION} && \
