@@ -173,7 +173,7 @@
 
         - name: sklearn-ubuntu-0.24.2
           type: push
-          service: sklearn-ubuntu
+          service: sklearn-ubuntu-0.24.2
           registry: https://gcr.io
           image_name: gcr.io/new-indico/sklearn-ubuntu
           image_tag: "0.24.2"
