@@ -171,14 +171,6 @@
           image_tag: "{{.Branch}}"
           dockercfg_service: gcr-dockercfg
 
-        - name: sklearn-ubuntu
-          type: push
-          service: sklearn-ubuntu
-          registry: https://gcr.io
-          image_name: gcr.io/new-indico/sklearn-ubuntu
-          image_tag: "0.19.2"
-          dockercfg_service: gcr-dockercfg
-
         - name: sklearn-ubuntu-0.24.2
           type: push
           service: sklearn-ubuntu
@@ -275,7 +267,7 @@
       command: sh -c 'sh scan-images.sh tsne-ubuntu-anchorestep gcr.io/new-indico/tsne-ubuntu:latest'
       encrypted_env_file: env.encrypted
 
-    - name: sklearn-ubuntu-anchorestep
+    - name: sklearn-ubuntu-0.24.2-anchorestep
       service: anchorescan
       command: sh -c 'sh scan-images.sh sklearn-ubuntu-anchorestep gcr.io/new-indico/sklearn-ubuntu:0.24.2'
       encrypted_env_file: env.encrypted

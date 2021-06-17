@@ -104,17 +104,6 @@ scipy-ubuntu:
     dockerfile: Dockerfile/scipy-ubuntu
   dockercfg_service: gcr-dockercfg
 
-sklearn-ubuntu:
-  default_cache_branch: "latest"
-  build:
-    dockerfile: Dockerfile/sklearn-ubuntu
-    args:
-      SKLEARN_VERSION: 0.19.2
-      SCIKIT_IMAGE_VERSION: 0.14.0
-      NUMPY_VERSION: 1.15.4
-      PANDAS_VERSION: 0.23.4
-  dockercfg_service: gcr-dockercfg
-
 sklearn-ubuntu-0.24.2:
   default_cache_branch: "latest"
   build:
@@ -189,5 +178,5 @@ test-3:
 test-4:
   image: busybox
   depends_on:
-    - sklearn-ubuntu
+    - sklearn-ubuntu-0.24.2
     - tsne-ubuntu
