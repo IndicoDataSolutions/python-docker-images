@@ -257,11 +257,6 @@
       command: sh -c 'sh scan-images.sh pandas-ubuntu-1.2.4-anchorestep gcr.io/new-indico/pandas-ubuntu:1.2.4'
       encrypted_env_file: env.encrypted
 
-    - name: pandas-ubuntu-1.2.4-anchorestep
-      service: anchorescan
-      command: sh -c 'sh scan-images.sh pandas-ubuntu-1.2.4-anchorestep gcr.io/new-indico/pandas-ubuntu:1.2.4'
-      encrypted_env_file: env.encrypted
-
     - name: tsne-ubuntu-anchorestep
       service: anchorescan
       command: sh -c 'sh scan-images.sh tsne-ubuntu-anchorestep gcr.io/new-indico/tsne-ubuntu:latest'
