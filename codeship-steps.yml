@@ -145,20 +145,12 @@
           image_tag: "1.1.0"
           dockercfg_service: gcr-dockercfg
 
-        - name: pandas-ubuntu
+        - name: pandas-ubuntu-1.2.4
           type: push
-          service: pandas-ubuntu
+          service: pandas-ubuntu-1.2.4
           registry: https://gcr.io
           image_name: gcr.io/new-indico/pandas-ubuntu
-          image_tag: "0.23.4"
-          dockercfg_service: gcr-dockercfg
-
-        - name: pandas-ubuntu-1.0.3
-          type: push
-          service: pandas-ubuntu-1.0.3
-          registry: https://gcr.io
-          image_name: gcr.io/new-indico/pandas-ubuntu
-          image_tag: "1.0.3"
+          image_tag: "1.2.4"
           dockercfg_service: gcr-dockercfg
 
     - type: parallel
@@ -252,14 +244,9 @@
       command: sh -c 'sh scan-images.sh scipy-ubuntu-anchorestep gcr.io/new-indico/scipy-ubuntu:1.1.0'
       encrypted_env_file: env.encrypted
 
-    - name: pandas-ubuntu-anchorestep
+    - name: pandas-ubuntu-1.2.4-anchorestep
       service: anchorescan
-      command: sh -c 'sh scan-images.sh pandas-ubuntu-anchorestep gcr.io/new-indico/pandas-ubuntu:0.23.4'
-      encrypted_env_file: env.encrypted
-
-    - name: pandas-ubuntu-1.0.3-anchorestep
-      service: anchorescan
-      command: sh -c 'sh scan-images.sh pandas-ubuntu-1.0.3-anchorestep gcr.io/new-indico/pandas-ubuntu:1.0.3'
+      command: sh -c 'sh scan-images.sh pandas-ubuntu-1.2.4-anchorestep gcr.io/new-indico/pandas-ubuntu:1.2.4'
       encrypted_env_file: env.encrypted
 
     - name: tsne-ubuntu-anchorestep
