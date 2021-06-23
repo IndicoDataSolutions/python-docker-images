@@ -2,6 +2,6 @@ FROM gcr.io/new-indico/alpine:3.9.3
 
 EXPOSE 5555
 
-RUN pip3 install flower==0.9.3
+RUN pip3 install flower==0.9.3 celery==4.4.7
 
 ENTRYPOINT ["flower"]
