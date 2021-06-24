@@ -1,7 +1,7 @@
-FROM gcr.io/new-indico/alpine:3.9.3
+FROM gcr.io/new-indico/ubuntu:18.04
 
 EXPOSE 5555
 
-RUN pip3 install flower==0.9.3
+RUN pip3 install celery==4.4.7 flower==0.9.3
 
 ENTRYPOINT ["flower"]
