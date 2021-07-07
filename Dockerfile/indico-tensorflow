@@ -101,20 +101,6 @@ RUN apt-get update && apt-get install -y \
     virtualenv \
     swig
 
-RUN python3.7 -m pip --no-cache-dir install \
-    Pillow \
-    h5py \
-    keras_preprocessing \
-    matplotlib \
-    mock \
-    numpy \
-    scipy \
-    sklearn \
-    pandas \
-    future \
-    portpicker \
-    enum34
-
 # Install tensorflow
 RUN chmod a+rwx /etc/bash.bashrc
 
