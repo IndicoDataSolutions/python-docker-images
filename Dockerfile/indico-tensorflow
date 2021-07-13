@@ -79,9 +79,13 @@ RUN ln -s /usr/local/cuda/lib64/stubs/libcuda.so /usr/local/cuda/lib64/stubs/lib
 # See http://bugs.python.org/issue19846
 ENV LANG C.UTF-8
 
-RUN apt-get update && apt-get install -y \
-    python3.7 \
-    python3-pip
+RUN apt update && DEBIAN_FRONTEND=noninteractive apt install -y build-essential \ 
+    libssl-dev zlib1g-dev libncurses5-dev libncursesw5-dev libreadline-dev libsqlite3-dev \
+    libgdbm-dev libdb5.3-dev libbz2-dev libexpat1-dev liblzma-dev tk-dev libffi-dev
+RUN wget https://www.python.org/ftp/python/3.7.9/Python-3.7.9.tgz
+RUN echo "bcd9f22cf531efc6f06ca6b9b2919bd4 Python-3.7.9.tgz" | md5sum -c
+RUN tar xzf Python-3.7.9.tgz
+RUN cd Python-3.7.9 && ./configure && make && make altinstall
 
 RUN ln -s $(which python3.7) /usr/local/bin/python
 RUN ln -s $(which python3.7) /usr/local/bin/python3
@@ -97,7 +101,6 @@ RUN apt-get update && apt-get install -y \
     git \
     wget \
     openjdk-8-jdk \
-    python3.7-dev \
     virtualenv \
     swig
 
