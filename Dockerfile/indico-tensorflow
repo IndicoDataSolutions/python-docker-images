@@ -44,8 +44,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         zip \
         zlib1g-dev \
         wget \
-        git \
-        && \
+        git && \
     find /usr/local/cuda-${CUDA}/lib64/ -type f -name 'lib*_static.a' -not -name 'libcudart_static.a' -delete && \
     rm /usr/lib/${LIB_DIR_PREFIX}-linux-gnu/libcudnn_static_v7.a
 
@@ -85,8 +84,8 @@ RUN apt update && DEBIAN_FRONTEND=noninteractive apt install -y build-essential 
 RUN wget https://www.python.org/ftp/python/3.7.9/Python-3.7.9.tgz
 RUN echo "bcd9f22cf531efc6f06ca6b9b2919bd4 Python-3.7.9.tgz" | md5sum -c
 RUN tar xzf Python-3.7.9.tgz
-RUN cd Python-3.7.9 && ./configure && make && make altinstall
-
+RUN cd Python-3.7.9 && ./configure --enable-shared && make && make altinstall
+ENV LD_LIBRARY_PATH=/lib:/usr/lib:/usr/local/lib
 RUN ln -s $(which python3.7) /usr/local/bin/python
 RUN ln -s $(which python3.7) /usr/local/bin/python3
 RUN alias pip3='pip3.7'
@@ -109,12 +108,7 @@ RUN chmod a+rwx /etc/bash.bashrc
 
 ARG TENSORFLOW_GPU_VERSION
 RUN python3.7 -m pip install tensorflow-gpu==${TENSORFLOW_GPU_VERSION}
-ENV LD_LIBRARY_PATH=/usr/local/cuda/lib64:/usr/local/cuda/lib
-
-RUN python3.7 -m pip install --no-cache-dir matplotlib
-RUN apt-get install wget
-RUN apt-get autoremove -y && apt-get remove -y wget
-ENV LD_LIBRARY_PATH=/usr/local/cuda/lib64:/usr/local/cuda/lib:/usr/local/nvidia/lib64
+ENV LD_LIBRARY_PATH=/usr/local/cuda/lib64:/usr/local/cuda/lib:/usr/local/nvidia/lib64:/lib:/usr/lib:/usr/local/lib
 
 WORKDIR /tf
 EXPOSE 8888
