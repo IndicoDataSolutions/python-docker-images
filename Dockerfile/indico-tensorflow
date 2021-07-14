@@ -77,10 +77,10 @@ ENV LANG C.UTF-8
 RUN apt update && DEBIAN_FRONTEND=noninteractive apt install -y build-essential \ 
     libssl-dev zlib1g-dev libncurses5-dev libncursesw5-dev libreadline-dev libsqlite3-dev \
     libgdbm-dev libdb5.3-dev libbz2-dev libexpat1-dev liblzma-dev tk-dev libffi-dev
-RUN wget https://www.python.org/ftp/python/3.7.9/Python-3.7.9.tgz
-RUN echo "bcd9f22cf531efc6f06ca6b9b2919bd4 Python-3.7.9.tgz" | md5sum -c
-RUN tar xzf Python-3.7.9.tgz
-RUN cd Python-3.7.9 && ./configure --enable-shared && make && make altinstall
+RUN wget https://www.python.org/ftp/python/3.7.10/Python-3.7.10.tgz
+RUN echo "0b19e34a6dabc4bf15fdcdf9e77e9856 Python-3.7.10.tgz" | md5sum -c
+RUN tar xzf Python-3.7.10.tgz
+RUN cd Python-3.7.10 && ./configure --enable-shared && make && make altinstall
 ENV LD_LIBRARY_PATH=/lib:/usr/lib:/usr/local/lib
 RUN ln -s $(which python3.7) /usr/local/bin/python
 RUN ln -s $(which python3.7) /usr/local/bin/python3
@@ -104,7 +104,7 @@ RUN chmod a+rwx /etc/bash.bashrc
 
 ARG TENSORFLOW_GPU_VERSION
 RUN python3.7 -m pip install tensorflow-gpu==${TENSORFLOW_GPU_VERSION}
-RUN cp /Python-3.7.9/Include/*.h /usr/local/lib/python3.7/site-packages/tensorflow/include/external/local_config_python/python_include/
+RUN cp /Python-3.7.10/Include/*.h /usr/local/lib/python3.7/site-packages/tensorflow/include/external/local_config_python/python_include/
 ENV LD_LIBRARY_PATH=/usr/local/cuda/lib64:/usr/local/cuda/lib:/usr/local/nvidia/lib64:/lib:/usr/lib:/usr/local/lib:$LD_LIBRARY_PATH
 
 WORKDIR /tf
