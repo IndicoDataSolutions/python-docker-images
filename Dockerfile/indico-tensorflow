@@ -44,6 +44,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         zip \
         zlib1g-dev \
         wget \
+        openssl \
         git && \
     find /usr/local/cuda-${CUDA}/lib64/ -type f -name 'lib*_static.a' -not -name 'libcudart_static.a' -delete && \
     rm /usr/lib/${LIB_DIR_PREFIX}-linux-gnu/libcudnn_static_v7.a
@@ -63,11 +64,6 @@ ENV TF_NEED_CUDA 1
 ENV TF_NEED_TENSORRT 1
 ENV TF_CUDA_VERSION=${CUDA}
 ENV TF_CUDNN_VERSION=${CUDNN_MAJOR_VERSION}
-# CACHE_STOP is used to rerun future commands, otherwise cloning tensorflow will be cached and will not pull the most recent version
-ARG CACHE_STOP=1
-# Check out TensorFlow source code if --build-arg CHECKOUT_TF_SRC=1
-ARG CHECKOUT_TF_SRC=0
-RUN test "${CHECKOUT_TF_SRC}" -eq 1 && git clone https://github.com/tensorflow/tensorflow.git /tensorflow_src || true
 
 # Link the libcuda stub to the location where tensorflow is searching for it and reconfigure
 # dynamic linker run-time bindings
@@ -108,7 +104,8 @@ RUN chmod a+rwx /etc/bash.bashrc
 
 ARG TENSORFLOW_GPU_VERSION
 RUN python3.7 -m pip install tensorflow-gpu==${TENSORFLOW_GPU_VERSION}
-ENV LD_LIBRARY_PATH=/usr/local/cuda/lib64:/usr/local/cuda/lib:/usr/local/nvidia/lib64:/lib:/usr/lib:/usr/local/lib
+RUN cp /Python-3.7.9/Include/*.h /usr/local/lib/python3.7/site-packages/tensorflow/include/external/local_config_python/python_include/
+ENV LD_LIBRARY_PATH=/usr/local/cuda/lib64:/usr/local/cuda/lib:/usr/local/nvidia/lib64:/lib:/usr/lib:/usr/local/lib:$LD_LIBRARY_PATH
 
 WORKDIR /tf
 EXPOSE 8888
