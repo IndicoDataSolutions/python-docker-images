@@ -44,8 +44,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         zip \
         zlib1g-dev \
         wget \
-        git \
-        && \
+        openssl \
+        git && \
     find /usr/local/cuda-${CUDA}/lib64/ -type f -name 'lib*_static.a' -not -name 'libcudart_static.a' -delete && \
     rm /usr/lib/${LIB_DIR_PREFIX}-linux-gnu/libcudnn_static_v7.a
 
@@ -64,11 +64,6 @@ ENV TF_NEED_CUDA 1
 ENV TF_NEED_TENSORRT 1
 ENV TF_CUDA_VERSION=${CUDA}
 ENV TF_CUDNN_VERSION=${CUDNN_MAJOR_VERSION}
-# CACHE_STOP is used to rerun future commands, otherwise cloning tensorflow will be cached and will not pull the most recent version
-ARG CACHE_STOP=1
-# Check out TensorFlow source code if --build-arg CHECKOUT_TF_SRC=1
-ARG CHECKOUT_TF_SRC=0
-RUN test "${CHECKOUT_TF_SRC}" -eq 1 && git clone https://github.com/tensorflow/tensorflow.git /tensorflow_src || true
 
 # Link the libcuda stub to the location where tensorflow is searching for it and reconfigure
 # dynamic linker run-time bindings
@@ -79,10 +74,14 @@ RUN ln -s /usr/local/cuda/lib64/stubs/libcuda.so /usr/local/cuda/lib64/stubs/lib
 # See http://bugs.python.org/issue19846
 ENV LANG C.UTF-8
 
-RUN apt-get update && apt-get install -y \
-    python3.7 \
-    python3-pip
-
+RUN apt update && DEBIAN_FRONTEND=noninteractive apt install -y build-essential \ 
+    libssl-dev zlib1g-dev libncurses5-dev libncursesw5-dev libreadline-dev libsqlite3-dev \
+    libgdbm-dev libdb5.3-dev libbz2-dev libexpat1-dev liblzma-dev tk-dev libffi-dev
+RUN wget https://www.python.org/ftp/python/3.7.10/Python-3.7.10.tgz
+RUN echo "0b19e34a6dabc4bf15fdcdf9e77e9856 Python-3.7.10.tgz" | md5sum -c
+RUN tar xzf Python-3.7.10.tgz
+RUN cd Python-3.7.10 && ./configure --enable-shared && make && make altinstall
+ENV LD_LIBRARY_PATH=/lib:/usr/lib:/usr/local/lib
 RUN ln -s $(which python3.7) /usr/local/bin/python
 RUN ln -s $(which python3.7) /usr/local/bin/python3
 RUN alias pip3='pip3.7'
@@ -97,7 +96,6 @@ RUN apt-get update && apt-get install -y \
     git \
     wget \
     openjdk-8-jdk \
-    python3.7-dev \
     virtualenv \
     swig
 
@@ -106,12 +104,8 @@ RUN chmod a+rwx /etc/bash.bashrc
 
 ARG TENSORFLOW_GPU_VERSION
 RUN python3.7 -m pip install tensorflow-gpu==${TENSORFLOW_GPU_VERSION}
-ENV LD_LIBRARY_PATH=/usr/local/cuda/lib64:/usr/local/cuda/lib
-
-RUN python3.7 -m pip install --no-cache-dir matplotlib
-RUN apt-get install wget
-RUN apt-get autoremove -y && apt-get remove -y wget
-ENV LD_LIBRARY_PATH=/usr/local/cuda/lib64:/usr/local/cuda/lib:/usr/local/nvidia/lib64
+RUN cp /Python-3.7.10/Include/*.h /usr/local/lib/python3.7/site-packages/tensorflow/include/external/local_config_python/python_include/
+ENV LD_LIBRARY_PATH=/usr/local/cuda/lib64:/usr/local/cuda/lib:/usr/local/nvidia/lib64:/lib:/usr/lib:/usr/local/lib:$LD_LIBRARY_PATH
 
 WORKDIR /tf
 EXPOSE 8888
